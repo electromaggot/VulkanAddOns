@@ -92,7 +92,7 @@ void gxCamera::update(float deltaSeconds)
 
 			secondsIntoAnimation = 0.0f;
 		}
-		updateCameraMatrices(aspectRatio, vertFOV);
+		updateProjectionMatrix(aspectRatio, vertFOV);
 	}
 }
 
