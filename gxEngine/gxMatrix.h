@@ -26,8 +26,8 @@ class gxMatrix
 public:
 	union // (anonymous)
 	{
-		mat4	m4;
-		float	f16[16];
+		mat4	matrix;
+		float	mtx[16];
 		float	f4x4[4][4];
 		struct // (anonymous)
 		{
@@ -64,15 +64,15 @@ public:
 				{
 					union // (anonymous)	scale and/or rotate:
 					{
-						float ZRotNegY2;	// Z rotation (2D) NEGATIVE unit vector Y
-						float ScaleX2;		// 2nd X scale component if rotated
+						float zRotNegY2;	// Z rotation (2D) NEGATIVE unit vector Y
+						float scaleX2;		// 2nd X scale component if rotated
 						float mtx_1_0;
 					};
 					union // (anonymous)	scale and/or rotate:
 					{
-						float ZRotX2;		// Z rotation (2D) unit vector X
-						float ScaleY;		// scaling-only (no rotation) Y
-						float ScaleY2;		// 2nd Y scale component if rotated
+						float zRotX2;		// Z rotation (2D) unit vector X
+						float scaleY;		// scaling-only (no rotation) Y
+						float scaleY2;		// 2nd Y scale component if rotated
 						float mtx_1_1;
 					};
 					float mtx_1_2;
@@ -89,7 +89,7 @@ public:
 					float mtx_2_1;
 					union // (anonymous)	scale Z
 					{
-						float ScaleZ;
+						float scaleZ;
 						float mtx_2_2;
 					};
 					float mtx_2_3;		// should always be 0
@@ -124,42 +124,29 @@ public:
 		};
 	};
 	
-	gxMatrix()
-	{
-		SetIdentity();
-	}
-	
-	void SetIdentity()
-	{
-		m4 = mat4(1.0f);
-	}
+	gxMatrix();
 
-	/*TJ_TODO: final disposition of the following, remains TBD...
-	void RotateXAxisOnly(float radsAngle);
-	void RotateYAxisOnly(float radsAngle);
-	void RotateZAxisOnly(float radsAngle);
+	void setIdentity();
 
-	void RotateXAxisMult(float radsAngle);
-	void RotateYAxisMult(float radsAngle);
-	void RotateZAxisMult(float radsAngle);
+	void setRotateXAxis(float radsAngle);
+	void setRotateYAxis(float radsAngle);
+	void setRotateZAxis(float radsAngle);
 
-	void Matrix3DMultiply(GLfloat (&m1)[16], GLfloat (&m2)[16], GLfloat (&result)[16]);
+	void mulRotateXAxis(float radsAngle);
+	void mulRotateYAxis(float radsAngle);
+	void mulRotateZAxis(float radsAngle);
 
-	void MultiplyBy(GLfloat (&m2)[16]);
-	void TranslateBy(GLfloat xlX, GLfloat xlY, GLfloat xlZ);
+	void matrix3DMultiply(float (&m1)[16], float (&m2)[16], float (&result)[16]);
+
+	void multiplyBy(float (&m2)[16]);
+	void translateBy(float xlX, float xlY, float xlZ);
 
 
-	gxPoint2D* position2D() { return (gxPoint2D*) &ptPosition2D; }
-	gxPoint3D* position3D() { return (gxPoint3D*) &ptPosition3D; }
+	vec2* position2D() { return (vec2*) &ptPosition2D; }
+	vec3* position3D() { return (vec3*) &ptPosition3D; }
 
-	GXpoint2D* Position2D() { return (GXpoint2D*) &ptPosition2D; }
-	GXpoint3D* Position3D() { return (GXpoint3D*) &ptPosition3D; }
-
-	gxVector2D* rotation2D() { return (gxVector2D*) &vecRotation2D; }
-	gxVector3D* rotation3D() { return (gxVector3D*) &vecRotation3D; }
-
-	GXvector2D* Rotation2D() { return (GXvector2D*) &vecRotation2D; }
-	GXvector3D* Rotation3D() { return (GXvector3D*) &vecRotation3D; }*/
+	vec2* rotation2D() { return (vec2*) &vecRotation2D; }
+	vec3* rotation3D() { return (vec3*) &vecRotation3D; }
 };
 
 #endif	// gxMatrix_h
