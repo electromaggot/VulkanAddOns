@@ -44,7 +44,7 @@ const vec3	DEFAULT_LOOK_AT_ORIGIN = vec3(0.0f, 0.0f, 0.0f);
 const vec3	FAILSAFE_CAMERA_POSITION = vec3(0.0f, 20.0f, -50.0f);	//	start with it 50 back and 20 up "just in case"
 																	//	it's left unset & rendered object is at origin.
 
-class gxCamera : gxMatrix
+class gxCamera : public gxMatrix
 {
 public:
 	gxCamera(VkExtent2D& extent)
@@ -80,10 +80,15 @@ private:
 
 		// METHODS
 public:
-	void update(float deltaSeconds);
-	void updateCameraMatrices(float aspectRatio, float degreeLandscapeFOV = DEFAULT_DEGREE_FOV_IN_LANDSCAPE);
+	void  update(float deltaSeconds);
+	void  updateProjectionMatrix(float aspectRatio, float degreeLandscapeFOV = DEFAULT_DEGREE_FOV_IN_LANDSCAPE);
 	float adjustedFOVperOrientation(float landscapeVerticalFOV, float aspectRatio);
-	void initSeldomChangedValues();
+	void  updateViewMatrix();
+	void  initSeldomChangedValues();
+
+		// getters
+	float getCurrentScreenWidth()	{ return previousScreenWidth; }
+	float getCurrentScreenHeight()	{ return previousScreenHeight; }
 };
 
 
