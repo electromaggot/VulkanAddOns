@@ -35,8 +35,8 @@ public:
 			union // (anonymous)
 			{
 				float row0[4];
-				vec2 vecRotation2D;
-				vec3 vecRotation3D;
+				vec2 rotation2D;
+				vec3 rotation3D;
 				struct // (anonymous)
 				{
 					union // (anonymous)	scale and/or rotate:
@@ -99,8 +99,8 @@ public:
 			union // (anonymous)
 			{
 				float row3[4];
-				vec2 ptPosition2D;
-				vec3 ptPosition3D;
+				vec2 position2D;
+				vec3 position3D;
 				struct // (anonymous)
 				{
 					union // (anonymous)	translate X*
@@ -140,13 +140,6 @@ public:
 
 	void multiplyBy(float (&m2)[16]);
 	void translateBy(float xlX, float xlY, float xlZ);
-
-
-	vec2* position2D() { return (vec2*) &ptPosition2D; }
-	vec3* position3D() { return (vec3*) &ptPosition3D; }
-
-	vec2* rotation2D() { return (vec2*) &vecRotation2D; }
-	vec3* rotation3D() { return (vec3*) &vecRotation3D; }
 };
 
 #endif	// gxMatrix_h
