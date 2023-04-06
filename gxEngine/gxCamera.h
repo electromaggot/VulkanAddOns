@@ -57,7 +57,7 @@ public:
 			previousScreenWidth(UNSET),
 			previousScreenHeight(UNSET)
 	{
-		ptPosition3D = FAILSAFE_CAMERA_POSITION;
+		position3D = FAILSAFE_CAMERA_POSITION;
 	}
 
 	~gxCamera()
