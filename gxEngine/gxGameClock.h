@@ -4,12 +4,13 @@
 //
 // Game Loop Timing, encapsulate things like: per-frame delta-time for Update() calls, elapsed
 //	time since game started, etc.  (todo: FPS frames-per-second counter)
+//								   (also: slo-mo mode (by scaling deltaTime) or fixed timing)
 // ____________________________________________________________________________________________
 // IMPORTANT USAGE NOTE (and when to be careful using this class)
-//	Times herein are stored in seconds, represented by 'float's -- of course including
-//	  fraction-of-second durations like that of a rendered frame.
-//	"Duration" is simply a number of seconds (or again, fractional seconds), but does
-//	  not directly imply a start or finish time.
+//	Times are stored in seconds, represented by 'float's -- of course including
+//	  fractions-of-second for tiny durations like that of a rendered frame.
+//	"Duration" is simply a number of seconds (or again, fractional seconds), but
+//	  does not directly imply a start or finish time.
 //	"Elapsed" means duration of seconds since the Game Started (startTime) up until
 //	  either: the start of a frame (or current frame), or "right now"
 //	Heed the distinction between REAL-TIME and FRAME TIME.
