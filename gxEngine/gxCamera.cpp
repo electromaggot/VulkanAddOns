@@ -48,7 +48,7 @@ float gxCamera::adjustedFOVperOrientation(float landscapeVerticalFOV, float aspe
 
 void gxCamera::updateViewMatrix()
 {
-	MVP.view = glm::lookAt(ptPosition3D, xyzLookAt, vecUp);
+	MVP.view = glm::lookAt(position3D, xyzLookAt, vecUp);
 }
 
 
