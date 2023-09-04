@@ -6,37 +6,42 @@
 //	demonstration, and especially learning.
 // Further "what"/"why" at bottom of this file.
 //
+// Modeled using Right-Handed coordinate system
+//	of OpenGL - the default for this engine - as
+//	are worldwide majority of existing 3D models.
+//
 // Created 7/15/20 by Tadd Jensen
 //	© 0000 (uncopyrighted; use at will)
 //
 #include "VertexBasedObject.h"
 #include "Vertex3D.h"
+#include "FixedRenderable.h"
 
 
 const Vertex3D CubeVertices[] = {	// add 0.5f to
 									//	x= y= z=
-	{ -0.5f, -0.5f, -0.5f },	// 0	r0 g0 b0	black
-	{ -0.5f,  0.5f, -0.5f },	// 1	r0 g1 b0	green
-	{  0.5f,  0.5f, -0.5f },	// 2	r1 g1 b0	yellow
-	{  0.5f, -0.5f, -0.5f },	// 3	r1 g0 b0	red
+	{  0.5f,  0.5f,  0.5f },	// 0	r1 g1 b1	white
+	{ -0.5f,  0.5f,  0.5f },	// 1	r0 g1 b1	cyan
+	{ -0.5f, -0.5f,  0.5f },	// 2	r0 g0 b1	blue
+	{  0.5f, -0.5f,  0.5f },	// 3	r1 g0 b1	magenta
 
-	{  0.5f, -0.5f,  0.5f },	// 4	r1 g0 b1	magenta
-	{  0.5f,  0.5f,  0.5f },	// 5	r0 g0 b1	blue
-	{ -0.5f,  0.5f,  0.5f },	// 6	r0 g1 b1	cyan
-	{ -0.5f, -0.5f,  0.5f }		// 7	r1 g1 b1	white
+	{ -0.5f,  0.5f, -0.5f },	// 4	r0 g1 b0	green
+	{  0.5f,  0.5f, -0.5f },	// 5	r1 g1 b0	yellow
+	{  0.5f, -0.5f, -0.5f },	// 6	r1 g0 b0	red
+	{ -0.5f, -0.5f, -0.5f }		// 7	r0 g0 b0	black
 };
 
 const IndexBufferIndexType CubeIndices[] = {
 
 	4, 5, 6, 6, 7, 4,		// rear		// rendering back-to-front
-	1, 6, 5, 5, 2, 1,		// bottom	//	(& bottom-to-top)
-	3, 2, 5, 5, 4, 3,		// right
-	7, 6, 1, 1, 0, 7,		// left		// however, sides won't look
-	7, 0, 3, 3, 4, 7,		// top		//	correct unless culled!
+	3, 2, 7, 7, 6, 3,		// bottom	//	(& bottom-to-top)
+	5, 0, 3, 3, 6, 5,		// right
+	1, 4, 7, 7, 2, 1,		// left		// however, sides won't look
+	5, 4, 1, 1, 0, 5,		// top		//	correct unless culled!
 	0, 1, 2, 2, 3, 0,		// front
 };
 
-VertexBasedObject Cube = {
+static VertexBasedObject Cube3DObject = {
 
 	VertexDescriptor3D,
 	(void*) CubeVertices,
@@ -52,32 +57,47 @@ VertexBasedObject Cube = {
 };
 
 
+class RenderableCube : public Renderable {					// cube, vertex + index buffer
+public:
+	RenderableCube(UBO& refUBO)
+		:	Renderable(Cube3DObject)						//	...this vertex buffer,  <───────╮
+	{														//									│
+		shaders = { { VERTEX,	"vboCube-vert.spv"	},		// These shaders require... ────────┤
+					{ FRAGMENT, "vboCube-frag.spv"	} };	//									│
+		pUBOs = { refUBO };									//	...and this uniform buffer.  <──╯
+	}
+};
 
-#if ASCII_ART
-			  7----------4
-			 /|         /|
-	(-,-,-) 0----------3 |
+
+
+#if ASCII_ART_EXPLAINER
+
+// Cube modeled for OpenGL
+
+			4----------5
+			|\         |\
+			| 1----------0 (+,+,+)
 			| |        | |
-			| 6--------|-5 (+,+,+)
-			|/         |/
-			1----------2
+	(-,-,-) 7-|--------6 |
+			 \|         \|
+			  2----------3
 
 // FRONT FACE			WINDING
-				-y
+				+y
 				  ^
-		 0        |        3
-		  o ,-----------. o
-(-.5,-.5)   \     |      \  (.5,-.5)
-		  v  `.|  |  CCW  `
-		  |   -'  |       |
+		 1        |        0
+		  o ,-----------< o
+ (-.5,.5)  /      |     ,-. (.5,.5)
+		  |  CCW  |  |,'  |
+		  |       |  '--  |
  -x <-----|-------+-------|-----> +x
-		  |       |  __   |
-		  .  CCW  |  |.   ^
- (-.5,.5)  \      |    `.   (.5,.5)
-		  o `-----------' o
-		 1        |        2
+		  |  __.  |       |
+		  |  ,'|  |  CCW  |
+(-.5,-.5) `-'     |      /  (.5,-.5)
+		  o >-----------' o
+		 2        |        3
 				  v
-				   +y
+				   -y
 #endif
 
 // What's "good" about this: (and "interesting")
