@@ -1,5 +1,5 @@
 //
-// Cube3DColorTest.cpp
+// Cube3DColorTest.h
 //	Vulkan Convenience 3D Objects
 //
 // A very-specific-purpose 3D cube for testing,
