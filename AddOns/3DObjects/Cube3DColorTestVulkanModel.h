@@ -60,12 +60,12 @@ static VertexBasedObject Cube3DObject = {
 
 class RenderableCube : public Renderable {					// cube, vertex + index buffer
 public:
-	RenderableCube(UBO& refUBO)
-		:	Renderable(Cube3DObject)						//	...this vertex buffer,  <───────╮
-	{														//									│
-		shaders = { { VERTEX,	"vboCube-vert.spv"	},		// These shaders require... ────────┤
-					{ FRAGMENT, "vboCube-frag.spv"	} };	//									│
-		pUBOs = { refUBO };									//	...and this uniform buffer.  <──╯
+	RenderableCube(UBO& refMVP)
+		:	Renderable(Cube3DObject)						// ...this vertex buffer and  <──╮
+	{														//								 │
+		shaders = { { VERTEX,	"mvp2xyz-vert.spv"	 },		// This shader expects... ───────┤
+					{ FRAGMENT, "xyz2color-frag.spv" } };	//								 │
+		pUBOs = { refMVP };									//	...this uniform buffer.  <───╯
 
 		customize = MODELED_FOR_VULKAN | FRONT_CLOCKWISE;
 	}
