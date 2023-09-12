@@ -18,7 +18,7 @@ void gxControlCameraLocked::handlePrimaryPressAndDrag(int toX, int toY)
 	if (timePrimaryPressed > 0.0f && !isZooming)
 	{
 		vec3 position = camera.position3D;
-		float moveX = toX - pressX;  float moveY = pressY - toY;
+		float moveX = pressX - toX;  float moveY = pressY - toY;
 		camera.matrix = glm::rotate(mat4(1.0f), radians(priorMoveX - moveX), vec3(0.0f, 1.0f, 0.0f));	 // moving X-wise rotates around Y-axix
 		camera.matrix = glm::rotate(camera.matrix, radians(priorMoveY - moveY), vec3(1.0f, 0.0f, 0.0f)); //		Y-wise around X-axis
 			// Note that the above rotations *could* be applied directly in radians, but we'd have to multiply a "sensitivity"
