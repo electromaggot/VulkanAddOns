@@ -107,8 +107,8 @@ public:
 	RenderableCube(UBO& refMVP)
 		:	Renderable(Cube3DObject)							// ...this vertex buffer and  <──╮
 	{															//								 │
-		shaders = { { VERTEX,	"mvpNormal2diffuse-vert.spv"},	// This shader expects... ───────┤
-					{ FRAGMENT, "vertColor4out-frag.spv"   } };	//								 │
+		shaders = { { VERTEX,	"mvp+normal=diffuse-vert.spv"},	// This shader expects... ───────┤
+					{ FRAGMENT, "intensity=color-frag.spv" } };	//								 │
 		pUBOs = { refMVP };										//	...this uniform buffer.  <───╯
 	}
 };
