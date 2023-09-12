@@ -1,3 +1,11 @@
+//
+// Texture-mapped diffuse-shaded Vertex shader
+//	Inputs: MVP UBO, XYZ vertex and UV texture coordinates, normal 3D vector
+//	Outputs to Fragment shader:
+//		Intensity value from simplistically calculated Lambert shading.
+//			(see "mvp+normal=diffuse.vert" for shading explanation)
+//		Texture coordinate passed-through as-is.
+//
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
@@ -12,7 +20,7 @@ layout(location = 1) in vec2 inTexCoord;		// UV texture coordinate
 layout(location = 2) in vec3 inNormal;			// normal vector
 
 layout(location = 0) out vec2 fragTexCoord;
-layout(location = 1) out float fragIntensity;
+layout(location = 1) out float fragIntensity;	// Diffuse-shaded
 
 void main() {
 	const vec3 lightVector = normalize(vec3(0, 2, 1));	// points AT light source
