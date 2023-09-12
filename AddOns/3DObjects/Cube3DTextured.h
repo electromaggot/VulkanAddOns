@@ -107,16 +107,16 @@ static VertexBasedObject Cube3DObject = {
 //	to share this object between other shaders or share shaders between similar objects.
 //	In that case, consider the below a usage example that the compiler will thus ignore.
 //
-class RenderableCube : public Renderable {						  // cube, vertex + normal buffer
-public:															  //	+ texture sampler
+class RenderableCube : public Renderable {						// cube, vertex + normal buffer
+public:															//		+ texture sampler
 	RenderableCube(UBO& refMVP)
-		:	Renderable(Cube3DObject)							  // ...this vertex buffer and  <──╮
-	{															  //							   │
-		shaders = { { VERTEX,	"mvp+uv+norm=diffuse-vert.spv" }, // This shader expects... ───────┤
-					{ FRAGMENT, "texture+intensity-frag.spv" } }; //							   │
-		pUBOs = { refMVP };										  //  ...this uniform buffer.  <───╯
-		textureSpecs = { { "C4Crate.png" }, { } };				  //  ...and textures too, array
-	}									 // ^^^						  <--	"null" terminated!
+		:	Renderable(Cube3DObject)							// ...this vertex buffer and  <──╮
+	{															//								 │
+		shaders = { { VERTEX,	"uv,mvp+norm=diffuv-vert.spv"},	// This shader expects... ───────┤
+					{ FRAGMENT, "textuv+intens-frag.spv" } };	//								 │
+		pUBOs = { refMVP };										//  ...this uniform buffer,  <───╯
+		textureSpecs = { { "C4Crate.png" }, { } };				//  ...and textures too, array
+	}									 // ^^^						<--	"null" terminated!
 };
 
 
