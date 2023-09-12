@@ -62,8 +62,8 @@ public:
 	RenderableCube(UBO& refMVP)
 		:	Renderable(Cube3DObject)						// ...this vertex buffer and  <──╮
 	{														//								 │
-		shaders = { { VERTEX,	"mvp2xyz-vert.spv"	 },		// This shader expects... ───────┤
-					{ FRAGMENT, "xyz2color-frag.spv" } };	//								 │
+		shaders = { { VERTEX,	"mvp+xyz=xyz-vert.spv" },	// This shader expects... ───────┤
+					{ FRAGMENT, "xyz=color-frag.spv" } };	//								 │
 		pUBOs = { refMVP };									//	...this uniform buffer.  <───╯
 	}
 };
