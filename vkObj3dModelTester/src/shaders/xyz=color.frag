@@ -1,3 +1,7 @@
+//
+// Special-purpose test-specific limited-use Fragment shader
+//	Takes input position passed from Vertex shader, converts it to a color.
+//
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
