@@ -1,3 +1,8 @@
+//
+// Couldn't-be-simpler Vertex shader, although special-purpose
+//	3D-transformed per passed-in model-view-projection and
+//	forwards incoming Vertex Coordinate through to Pixel shader.
+//
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
