@@ -14,7 +14,7 @@
 // Created 7/15/20 by Tadd Jensen
 //	© 0000 (uncopyrighted; use at will)
 //
-#include "VertexBasedObject.h"
+#include "MeshObject.h"
 #include "Vertex3D.h"
 #include "FixedRenderable.h"
 
@@ -42,7 +42,7 @@ const IndexBufferIndexType CubeIndices[] = {
 	0, 1, 2, 2, 3, 0,		// front
 };
 
-static VertexBasedObject Cube3DObject = {
+static MeshObject Cube3DObject = {
 
 	VertexDescriptor3D,
 	(void*) CubeVertices,
