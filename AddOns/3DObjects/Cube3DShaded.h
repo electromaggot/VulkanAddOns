@@ -91,13 +91,13 @@ const Vertex3DNormal CubeVertices[] = {	// (Purposely not rendering back-to-fron
 // Again, this is optional if you want to share this object between orther shaders or
 //	share shaders between other objects.  In that case, consider the below an example.
 //
-class RenderableCube : public Renderable {
+class RenderableCube : public DrawableSpec {
 	VertexDescription<Vertex3DNormal> vertexDescriptor;
 	MeshObject cube3DObject = { vertexDescriptor, (void*) CubeVertices,
 									  N_ELEMENTS_IN_ARRAY(CubeVertices) };
 public:
 	RenderableCube(UBO& refMVP)									// cube, vertex + normal buffer
-		:	Renderable(cube3DObject)							// ...this vertex buffer and  <──╮
+		:	DrawableSpec(cube3DObject)							// ...this vertex buffer and  <──╮
 	{															//								 │
 		shaders = { { VERTEX,	"mvp+normal=diffuse-vert.spv"},	// This shader expects... ───────┤
 					{ FRAGMENT, "intensity=color-frag.spv" } };	//								 │
