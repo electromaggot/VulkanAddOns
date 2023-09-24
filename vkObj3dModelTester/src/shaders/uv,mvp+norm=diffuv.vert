@@ -16,8 +16,8 @@ layout(binding = 0) uniform UniformBufferObject {
 } ubo;
 											// From Vertex3DTextured, for each vertex:
 layout(location = 0) in vec3 inPosition;		// 3D XYZ vertex coordinate
-layout(location = 1) in vec2 inTexCoord;		// UV texture coordinate
-layout(location = 2) in vec3 inNormal;			// normal vector
+layout(location = 1) in vec3 inNormal;			// normal vector
+layout(location = 2) in vec2 inTexCoord;		// UV texture coordinate
 
 layout(location = 0) out vec2 fragTexCoord;
 layout(location = 1) out float fragIntensity;	// Diffuse-shaded
