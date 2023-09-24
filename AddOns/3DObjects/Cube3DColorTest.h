@@ -13,12 +13,12 @@
 // Created 7/15/20 by Tadd Jensen
 //	© 0000 (uncopyrighted; use at will)
 //
-#include "MeshObject.h"
-#include "Vertex3D.h"
+#include "Vertex3DTypes.h"
 #include "FixedRenderable.h"
+#include "MeshObject.h"
 
 
-const Vertex3D CubeVertices[] = {	// add 0.5f to
+const vec3 CubeVertices[] = {		// add 0.5f to
 									//	x= y= z=
 	{  0.5f,  0.5f,  0.5f },	// 0	r1 g1 b1	white
 	{ -0.5f,  0.5f,  0.5f },	// 1	r0 g1 b1	cyan
@@ -41,26 +41,28 @@ const IndexBufferIndexType CubeIndices[] = {
 	0, 1, 2, 2, 3, 0,		// front
 };
 
-static MeshObject Cube3DObject = {
-
-	VertexDescriptor3D,
-	(void*) CubeVertices,
-	N_ELEMENTS_IN_ARRAY(CubeVertices),
-	0,	// first vertex
-	1,	// instance count
-	0,	// first instance
-
-	(void*) CubeIndices,
-	N_ELEMENTS_IN_ARRAY(CubeIndices),
-	0,	// first index
-	0	// vertex offset
-};
 
 
-class RenderableCube : public Renderable {					// cube, vertex + index buffer
+class RenderableCube : public Renderable
+{
+	VertexDescription<Vertex3D> vertexDescriptor;
+	MeshObject cube3DObject = {
+		vertexDescriptor,
+		(void*) CubeVertices,
+		N_ELEMENTS_IN_ARRAY(CubeVertices),
+		0,	// first vertex
+		1,	// instance count
+		0,	// first instance
+
+		(void*) CubeIndices,
+		N_ELEMENTS_IN_ARRAY(CubeIndices),
+		0,	// first index
+		0	// vertex offset
+	};
+
 public:
-	RenderableCube(UBO& refMVP)
-		:	Renderable(Cube3DObject)						// ...this vertex buffer and  <──╮
+	RenderableCube(UBO& refMVP)								// cube, vertex + index buffer
+		:	Renderable(cube3DObject)						// ...this vertex buffer and  <──╮
 	{														//								 │
 		shaders = { { VERTEX,	"mvp+xyz=xyz-vert.spv" },	// This shader expects... ───────┤
 					{ FRAGMENT, "xyz=color-frag.spv" } };	//								 │
