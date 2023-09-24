@@ -14,90 +14,72 @@
 // Created 7/15/20 by Tadd Jensen
 //	© 0000 (uncopyrighted; use at will)
 //
-#include "MeshObject.h"
-#include "Vertex3D.h"
-#include "Vertex3DTextured.h"
+#include "Vertex3DTypes.h"
 #include "FixedRenderable.h"
-
-typedef vec2	Point2D;
-
-
-const Vertex3D	vertex0 = Vertex3D( 0.5f,  0.5f,  0.5f);
-const Vertex3D	vertex1 = Vertex3D(-0.5f,  0.5f,  0.5f);
-const Vertex3D	vertex2 = Vertex3D(-0.5f, -0.5f,  0.5f);
-const Vertex3D	vertex3 = Vertex3D( 0.5f, -0.5f,  0.5f);
-
-const Vertex3D	vertex4 = Vertex3D(-0.5f,  0.5f, -0.5f);
-const Vertex3D	vertex5 = Vertex3D( 0.5f,  0.5f, -0.5f);
-const Vertex3D	vertex6 = Vertex3D( 0.5f, -0.5f, -0.5f);
-const Vertex3D	vertex7 = Vertex3D(-0.5f, -0.5f, -0.5f);
-
-const Point2D	txUpLf	= Point2D(0.0f, 0.0f);
-const Point2D	txUpRt	= Point2D(1.0f, 0.0f);
-const Point2D	txDnLf	= Point2D(0.0f, 1.0f);
-const Point2D	txDnRt	= Point2D(1.0f, 1.0f);
-
-const Vertex3D	front	= Vertex3D( 0.0f,  0.0f,  1.0f);	// These should all
-const Vertex3D	back	= Vertex3D( 0.0f,  0.0f, -1.0f);	//	be normalized,
-const Vertex3D	top		= Vertex3D( 0.0f,  1.0f,  0.0f);	//	i.e. unit vectors
-const Vertex3D	bottom	= Vertex3D( 0.0f, -1.0f,  0.0f);	//	with length
-const Vertex3D	right	= Vertex3D( 1.0f,  0.0f,  0.0f);	//	of 1.0f.
-const Vertex3D	left	= Vertex3D(-1.0f,  0.0f,  0.0f);
+#include "MeshObject.h"
 
 
-const Vertex3DTextured CubeVertices[] = {
+const vec3	vertex0	( 0.5f,  0.5f,  0.5f);
+const vec3	vertex1	(-0.5f,  0.5f,  0.5f);
+const vec3	vertex2	(-0.5f, -0.5f,  0.5f);
+const vec3	vertex3	( 0.5f, -0.5f,  0.5f);
 
-	{ vertex0,	txUpRt,	front	},	// 0		// (Purposely not rendering
-	{ vertex1,	txUpLf,	front	},	// 1		//	back-to-front/bottom-to-top
-	{ vertex2,	txDnLf,	front	},	// 2		//	since occlusion should occur
-	{ vertex2,	txDnLf,	front	},	// 3		//	minimally from backface culling
-	{ vertex3,	txDnRt,	front	},	// 4		//	(especially since this model is
-	{ vertex0,	txUpRt,	front	},	// 5		//	 entirely convex) and ideally
-										//	via depth-testing/Z-buffering.)
-	{ vertex5,	txUpRt,	top		},	// 6
-	{ vertex4,	txUpLf,	top		},	// 7
-	{ vertex1,	txDnLf,	top		},	// 8
-	{ vertex1,	txDnLf,	top		},	// 9
-	{ vertex0,	txDnRt,	top		},	// 10
-	{ vertex5,	txUpRt,	top		},	// 11
+const vec3	vertex4	(-0.5f,  0.5f, -0.5f);
+const vec3	vertex5	( 0.5f,  0.5f, -0.5f);
+const vec3	vertex6	( 0.5f, -0.5f, -0.5f);
+const vec3	vertex7	(-0.5f, -0.5f, -0.5f);
 
-	{ vertex5,	txUpRt,	right	},	// 12
-	{ vertex0,	txUpLf,	right	},	// 13
-	{ vertex3,	txDnLf,	right	},	// 14
-	{ vertex3,	txDnLf,	right	},	// 15
-	{ vertex6,	txDnRt,	right	},	// 16
-	{ vertex5,	txUpRt,	right	},	// 17
+const vec2	txUpLf	( 0.0f, 0.0f);
+const vec2	txUpRt	( 1.0f, 0.0f);
+const vec2	txDnLf	( 0.0f, 1.0f);
+const vec2	txDnRt	( 1.0f, 1.0f);
 
-	{ vertex1,	txUpRt,	left	},	// 18
-	{ vertex4,	txUpLf,	left	},	// 19
-	{ vertex7,	txDnLf,	left	},	// 20
-	{ vertex7,	txDnLf,	left	},	// 21
-	{ vertex2,	txDnRt,	left	},	// 22
-	{ vertex1,	txUpRt,	left	},	// 23
+const vec3	front	( 0.0f,  0.0f,  1.0f);		// These should all be normalized, i.e. unit vectors with length 1.0f.
+const vec3	back	( 0.0f,  0.0f, -1.0f);
+const vec3	top		( 0.0f,  1.0f,  0.0f);
+const vec3	bottom	( 0.0f, -1.0f,  0.0f);
+const vec3	right	( 1.0f,  0.0f,  0.0f);
+const vec3	left	(-1.0f,  0.0f,  0.0f);
 
-	{ vertex3,	txUpRt,	bottom	},	// 24
-	{ vertex2,	txUpLf,	bottom	},	// 25
-	{ vertex7,	txDnLf,	bottom	},	// 26
-	{ vertex7,	txDnLf,	bottom	},	// 27
-	{ vertex6,	txDnRt,	bottom	},	// 28
-	{ vertex3,	txUpRt,	bottom	},	// 29
 
-	{ vertex4,	txUpRt,	back	},	// 30
-	{ vertex5,	txUpLf,	back	},	// 31
-	{ vertex6,	txDnLf,	back	},	// 32
-	{ vertex6,	txDnLf,	back	},	// 33
-	{ vertex7,	txDnRt,	back	},	// 34
-	{ vertex4,	txUpRt,	back	}	// 35
-};
-
-static MeshObject Cube3DObject = {
-
-	VertexDescriptor3DTextured,
-	(void*) CubeVertices,
-	N_ELEMENTS_IN_ARRAY(CubeVertices),
-	0,	// first vertex
-	1,	// instance count
-	0,	// first instance
+const Vertex3DNormalTexture CubeVertices[] = {	// (Purposely not rendering back-to-front/bottom-to-top since occlusion
+												//	should occur minimally from backface culling (especially since this
+	{ vertex0,	front,	txUpRt	},	// 0		//	model is entirely convex) and ideally via depth-testing/Z-buffering.)
+	{ vertex1,	front,	txUpLf	},	// 1
+	{ vertex2,	front,	txDnLf	},	// 2
+	{ vertex2,	front,	txDnLf	},	// 3
+	{ vertex3,	front,	txDnRt	},	// 4
+	{ vertex0,	front,	txUpRt	},	// 5
+	{ vertex5,	top,	txUpRt	},	// 6
+	{ vertex4,	top,	txUpLf	},	// 7
+	{ vertex1,	top,	txDnLf	},	// 8
+	{ vertex1,	top,	txDnLf	},	// 9
+	{ vertex0,	top,	txDnRt	},	// 10
+	{ vertex5,	top,	txUpRt	},	// 11
+	{ vertex5,	right,	txUpRt	},	// 12
+	{ vertex0,	right,	txUpLf	},	// 13
+	{ vertex3,	right,	txDnLf	},	// 14
+	{ vertex3,	right,	txDnLf	},	// 15
+	{ vertex6,	right,	txDnRt	},	// 16
+	{ vertex5,	right,	txUpRt	},	// 17
+	{ vertex1,	left,	txUpRt	},	// 18
+	{ vertex4,	left,	txUpLf	},	// 19
+	{ vertex7,	left,	txDnLf	},	// 20
+	{ vertex7,	left,	txDnLf	},	// 21
+	{ vertex2,	left,	txDnRt	},	// 22
+	{ vertex1,	left,	txUpRt	},	// 23
+	{ vertex3,	bottom,	txUpRt	},	// 24
+	{ vertex2,	bottom,	txUpLf	},	// 25
+	{ vertex7,	bottom,	txDnLf	},	// 26
+	{ vertex7,	bottom,	txDnLf	},	// 27
+	{ vertex6,	bottom,	txDnRt	},	// 28
+	{ vertex3,	bottom,	txUpRt	},	// 29
+	{ vertex4,	back,	txUpRt	},	// 30
+	{ vertex5,	back,	txUpLf	},	// 31
+	{ vertex6,	back,	txDnLf	},	// 32
+	{ vertex6,	back,	txDnLf	},	// 33
+	{ vertex7,	back,	txDnRt	},	// 34
+	{ vertex4,	back,	txUpRt	}	// 35
 };
 
 
@@ -107,10 +89,13 @@ static MeshObject Cube3DObject = {
 //	to share this object between other shaders or share shaders between similar objects.
 //	In that case, consider the below a usage example that the compiler will thus ignore.
 //
-class RenderableCube : public Renderable {						// cube, vertex + normal buffer
-public:															//		+ texture sampler
-	RenderableCube(UBO& refMVP)
-		:	Renderable(Cube3DObject)							// ...this vertex buffer and  <──╮
+class RenderableCube : public Renderable {
+	VertexDescription<Vertex3DNormalTexture> vertexDescriptor;
+	MeshObject cube3DObject = { vertexDescriptor, (void*) CubeVertices,
+									  N_ELEMENTS_IN_ARRAY(CubeVertices) };
+public:															// cube, vertex + normal buffer
+	RenderableCube(UBO& refMVP)									//			+ texture sampler
+		:	Renderable(cube3DObject)							// ...this vertex buffer and  <──╮
 	{															//								 │
 		shaders = { { VERTEX,	"uv,mvp+norm=diffuv-vert.spv"},	// This shader expects... ───────┤
 					{ FRAGMENT, "textuv+intens-frag.spv" } };	//								 │
