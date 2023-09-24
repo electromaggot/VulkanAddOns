@@ -17,39 +17,38 @@
 // Created 7/15/20 by Tadd Jensen
 //	© 0000 (uncopyrighted; use at will)
 //
-#include "MeshObject.h"
-#include "Vertex3D.h"
-#include "Vertex3DwNormal.h"
+#include "Vertex3DTypes.h"
 #include "FixedRenderable.h"
+#include "MeshObject.h"
 
 
-const Vertex3D	vertex0 = Vertex3D( 0.5f,  0.5f,  0.5f);
-const Vertex3D	vertex1 = Vertex3D(-0.5f,  0.5f,  0.5f);
-const Vertex3D	vertex2 = Vertex3D(-0.5f, -0.5f,  0.5f);
-const Vertex3D	vertex3 = Vertex3D( 0.5f, -0.5f,  0.5f);
+const vec3	vertex0	( 0.5f,  0.5f,  0.5f);
+const vec3	vertex1	(-0.5f,  0.5f,  0.5f);
+const vec3	vertex2	(-0.5f, -0.5f,  0.5f);
+const vec3	vertex3	( 0.5f, -0.5f,  0.5f);
 
-const Vertex3D	vertex4 = Vertex3D(-0.5f,  0.5f, -0.5f);
-const Vertex3D	vertex5 = Vertex3D( 0.5f,  0.5f, -0.5f);
-const Vertex3D	vertex6 = Vertex3D( 0.5f, -0.5f, -0.5f);
-const Vertex3D	vertex7 = Vertex3D(-0.5f, -0.5f, -0.5f);
+const vec3	vertex4	(-0.5f,  0.5f, -0.5f);
+const vec3	vertex5	( 0.5f,  0.5f, -0.5f);
+const vec3	vertex6	( 0.5f, -0.5f, -0.5f);
+const vec3	vertex7	(-0.5f, -0.5f, -0.5f);
 
-const Vertex3D	front	= Vertex3D( 0.0f,  0.0f,  1.0f);	// These should all
-const Vertex3D	back	= Vertex3D( 0.0f,  0.0f, -1.0f);	//	be normalized,
-const Vertex3D	top		= Vertex3D( 0.0f,  1.0f,  0.0f);	//	i.e. unit vectors
-const Vertex3D	bottom	= Vertex3D( 0.0f, -1.0f,  0.0f);	//	with length
-const Vertex3D	right	= Vertex3D( 1.0f,  0.0f,  0.0f);	//	of 1.0f.
-const Vertex3D	left	= Vertex3D(-1.0f,  0.0f,  0.0f);
+const vec3	front	( 0.0f,  0.0f,  1.0f);		// These should all be normalized, i.e. unit vectors with length 1.0f.
+const vec3	back	( 0.0f,  0.0f, -1.0f);
+const vec3	top		( 0.0f,  1.0f,  0.0f);
+const vec3	bottom	( 0.0f, -1.0f,  0.0f);
+const vec3	right	( 1.0f,  0.0f,  0.0f);
+const vec3	left	(-1.0f,  0.0f,  0.0f);
 
 
-const Vertex3DwNormal CubeVertices[] = {
+const Vertex3DNormal CubeVertices[] = {	// (Purposely not rendering back-to-front/bottom-to-top since occlusion
+										//	should occur minimally from backface culling (especially since this
+	{ vertex0,	front	},	// 0		//	model is entirely convex) and ideally via depth-testing/Z-buffering.)
+	{ vertex1,	front	},	// 1
+	{ vertex2,	front	},	// 2
+	{ vertex2,	front	},	// 3
+	{ vertex3,	front	},	// 4
+	{ vertex0,	front	},	// 5
 
-	{ vertex0,	front	},	// 0		// (Purposely not rendering
-	{ vertex1,	front	},	// 1		//	back-to-front/bottom-to-top
-	{ vertex2,	front	},	// 2		//	since occlusion should occur
-	{ vertex2,	front	},	// 3		//	minimally from backface culling
-	{ vertex3,	front	},	// 4		//	(especially since this model is
-	{ vertex0,	front	},	// 5		//	 entirely convex) and ideally
-										//	via depth-testing/Z-buffering.)
 	{ vertex5,	top		},	// 6
 	{ vertex4,	top		},	// 7
 	{ vertex1,	top		},	// 8
@@ -86,26 +85,19 @@ const Vertex3DwNormal CubeVertices[] = {
 	{ vertex4,	back	}	// 35
 };
 
-static MeshObject Cube3DObject = {
-
-	VertexDescriptor3DwNormal,
-	(void*) CubeVertices,
-	N_ELEMENTS_IN_ARRAY(CubeVertices),
-	0,	// first vertex
-	1,	// instance count
-	0,	// first instance
-};
-
 
 // Optionally tie shaders to this 3D object (and the MVP UBO the Vertex Shader requires)
 //	allowing this object to be easily instantiated by any code that #includes this file.
 // Again, this is optional if you want to share this object between orther shaders or
 //	share shaders between other objects.  In that case, consider the below an example.
 //
-class RenderableCube : public Renderable {						// cube, vertex + normal buffer
+class RenderableCube : public Renderable {
+	VertexDescription<Vertex3DNormal> vertexDescriptor;
+	MeshObject cube3DObject = { vertexDescriptor, (void*) CubeVertices,
+									  N_ELEMENTS_IN_ARRAY(CubeVertices) };
 public:
-	RenderableCube(UBO& refMVP)
-		:	Renderable(Cube3DObject)							// ...this vertex buffer and  <──╮
+	RenderableCube(UBO& refMVP)									// cube, vertex + normal buffer
+		:	Renderable(cube3DObject)							// ...this vertex buffer and  <──╮
 	{															//								 │
 		shaders = { { VERTEX,	"mvp+normal=diffuse-vert.spv"},	// This shader expects... ───────┤
 					{ FRAGMENT, "intensity=color-frag.spv" } };	//								 │
