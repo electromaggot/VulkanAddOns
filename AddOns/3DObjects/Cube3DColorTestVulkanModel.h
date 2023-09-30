@@ -51,14 +51,8 @@ class RenderableCube : public DrawableSpec
 		vertexDescriptor,
 		(void*) CubeVertices,
 		N_ELEMENTS_IN_ARRAY(CubeVertices),
-		0,	// first vertex
-		1,	// instance count
-		0,	// first instance
-
 		(void*) CubeIndices,
-		N_ELEMENTS_IN_ARRAY(CubeIndices),
-		0,	// first index
-		0	// vertex offset
+		N_ELEMENTS_IN_ARRAY(CubeIndices)
 	};
 
 public:
