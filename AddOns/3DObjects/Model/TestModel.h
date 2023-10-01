@@ -32,8 +32,8 @@ public:
 		model = { "viking_room.obj", OBJ_FILE };
 		customize = SHOW_BACKFACES;
 
-		if (OBJ_FILE == OBJ_FILE_TINY) {	// tiny_obj_loader returns 32-bit indices
-			object3D.indexType = VK_INDEX_TYPE_UINT32;
+		if (OBJ_FILE == OBJ_FILE_TINY) {	// tiny_obj_loader always returns 32-bit indices
+			object3D.indexType = MESH_LARGE_INDEX;
 		}
 	}
 };
