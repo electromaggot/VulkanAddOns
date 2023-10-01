@@ -32,7 +32,7 @@ const vec3 CubeVertices[] = {		// add 0.5f to
 	{  0.5f,  0.5f,  0.5f }		// 7	r1 g1 b1	white
 };
 
-const IndexBufferIndexType CubeIndices[] = {
+const IndexBufferDefaultIndexType CubeIndices[] = {
 
 	4, 5, 6, 6, 7, 4,		// rear		// rendering back-to-front
 	3, 2, 7, 7, 6, 3,		// bottom	//	(& bottom-to-top)
