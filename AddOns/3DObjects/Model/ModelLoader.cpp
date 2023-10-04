@@ -40,12 +40,20 @@ void ModelLoader::loadModel(string nameOBJFile)
 	std::vector<tinyobj::material_t> materials;
 	std::string warn, err;
 
-	if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err,
-						  fileSystem.ModelFileFullPath(nameOBJFile).c_str())) {
+	string fullPath = fileSystem.ModelFileFullPath(nameOBJFile);
+	const char* charPath = fullPath.c_str();
+	Log(RAW, "Load: model - file: %s", charPath);
+
+	if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, charPath)) {
 		throw std::runtime_error(warn + err);
 	}
 
+	// Whatever arrays tinyobj::attrib_t returns (which are non-empty) determines
+	//	both which Vertex Type and shaders to use.
+
+
 	std::unordered_map<Vertex3DNormalTexture, uint32_t> uniqueVertices = {};
+	int numRedundantVertices = 0;
 
 	for (const auto& shape : shapes) {
 		for (const auto& index : shape.mesh.indices) {
@@ -89,9 +97,12 @@ void ModelLoader::loadModel(string nameOBJFile)
 			if (uniqueVertices.count(vertex) == 0) {
 				uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
 				vertices.push_back(vertex);
+			} else {
+				++numRedundantVertices;
 			}
 
 			indices.push_back(uniqueVertices[vertex]);
 		}
 	}
+	Log(RAW, "      done; vertices: %d, redundant vertices culled: %d", vertices.size(), numRedundantVertices);
 }
