@@ -16,7 +16,7 @@ enum SpecType {
 	UNSPECIFIED,
 	FONT_3D,
 	OBJ_FILE_TINY,				// use TinyOBJLoader.h
-	OBJ_FILE_FAST,				// use our own fast OBJ loader
+	OBJ_FILE_FAST,				// use our own faster OBJ loader
 	OBJ_FILE = OBJ_FILE_TINY	// default to this loader
 };
 
