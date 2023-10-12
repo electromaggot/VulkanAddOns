@@ -8,15 +8,12 @@
 //	© 0000 (uncopyrighted; use at will)
 //
 #include "ModelLoader.h"
-
 #include "ModelDefSpec.h"
 #include "Vertex3DTypes.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
-
 #include <glm/gtx/hash.hpp>
-
 #include <unordered_map>
 
 typedef Vertex3DNormalTextureColor	CatchAllVertexType;
@@ -100,6 +97,7 @@ AttributeBits ModelLoader::loadModel(string nameOBJFile)
 			indices.push_back(uniqueVertices[vertex]);
 		}
 	}
+	vertices.exactResize();
 	Log(RAW, "      done; vertices: %d, redundant vertices culled: %d", vertices.count(), numRedundantVertices);
 	return tinybits;
 }
