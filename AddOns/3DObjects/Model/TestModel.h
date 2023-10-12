@@ -18,8 +18,8 @@
 
 class RenderableCube : public DrawableSpec {
 
-	VertexDescription<Vertex3DNormalTexture> temporaryVertexDescriptor;
-	MeshObject object3D = { temporaryVertexDescriptor };
+	VertexDescriptionDynamic vertexDescriptor;
+	MeshObject object3D = { vertexDescriptor };
 
 public:
 	RenderableCube(UBO& refMVP)
