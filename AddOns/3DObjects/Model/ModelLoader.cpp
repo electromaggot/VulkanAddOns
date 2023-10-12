@@ -10,6 +10,7 @@
 #include "ModelLoader.h"
 
 #include "ModelDefSpec.h"
+#include "Vertex3DTypes.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
@@ -18,84 +19,79 @@
 
 #include <unordered_map>
 
+typedef Vertex3DNormalTextureColor	CatchAllVertexType;
+
 
 namespace std {
-	template<> struct hash<Vertex3DNormalTexture> {
-		size_t operator()(Vertex3DNormalTexture const& vertex) const {
-			return ((hash<glm::vec3>()(vertex.position) ^ (hash<glm::vec3>()(vertex.normal) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texCoord) << 1);
-		}
-	};
-	template<> struct hash<Vertex3DTextureColor> {
-		size_t operator()(Vertex3DTextureColor const& vertex) const {
-			return ((hash<glm::vec3>()(vertex.position) ^ (hash<glm::vec4>()(vertex.color) << 1)) >> 1) ^ (hash<glm::vec2>()(vertex.texCoord) << 1);
+	template<> struct hash<CatchAllVertexType> {
+		size_t operator()(CatchAllVertexType const& vertex) const {
+			auto posn = hash<vec3>()(vertex.position);
+			auto norm = hash<vec3>()(vertex.normal);
+			auto texc = hash<vec2>()(vertex.texCoord);
+			auto colr = hash<vec4>()(vertex.color);
+			return ((posn ^ (norm << 1)) >> 1) ^ (colr ^ (texc << 1));
 		}
 	};
 }
 
 
-void ModelLoader::loadModel(string nameOBJFile)
+AttributeBits ModelLoader::loadModel(string nameOBJFile)
 {
-	tinyobj::attrib_t attrib;
-	std::vector<tinyobj::shape_t> shapes;
-	std::vector<tinyobj::material_t> materials;
-	std::string warn, err;
+	tinyobj::attrib_t tiny;
+	vector<tinyobj::shape_t> shapes;
+	vector<tinyobj::material_t> materials;
+	string warn, err;
 
 	string fullPath = fileSystem.ModelFileFullPath(nameOBJFile);
 	const char* charPath = fullPath.c_str();
 	Log(RAW, "Load: model - file: %s", charPath);
 
-	if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, charPath)) {
-		throw std::runtime_error(warn + err);
+	if (!tinyobj::LoadObj(&tiny, &shapes, &materials, &warn, &err, charPath)) {
+		Log(RAW, "      FAILED! err \"" + err + "\" warn: " + warn);
+		return 0;
 	}
 
 	// Whatever arrays tinyobj::attrib_t returns (which are non-empty) determines
 	//	both which Vertex Type and shaders to use.
+	AttributeBits tinybits = ((! tiny.vertices.empty())	 ? Attribits[POSITION] : 0)
+						   | ((! tiny.normals.empty())	 ? Attribits[NORMAL]   : 0)
+						   | ((! tiny.texcoords.empty()) ? Attribits[TEXCOORD] : 0)
+						   | ((! tiny.colors.empty())	 ? Attribits[COLOR]    : 0);
 
+	vertices.setAttributes(tinybits);
 
-	std::unordered_map<Vertex3DNormalTexture, uint32_t> uniqueVertices = {};
+	std::unordered_map<CatchAllVertexType, uint32_t> uniqueVertices = {};
 	int numRedundantVertices = 0;
 
 	for (const auto& shape : shapes) {
 		for (const auto& index : shape.mesh.indices) {
-			Vertex3DNormalTexture vertex = {};
+			CatchAllVertexType vertex = {};
 
-			if (! attrib.vertices.empty()) {
-				vertex.position = {
-					attrib.vertices[3 * index.vertex_index + 0],
-					attrib.vertices[3 * index.vertex_index + 1],
-					attrib.vertices[3 * index.vertex_index + 2]
-				};
+			if (! tiny.vertices.empty()) {
+				int iVec3 = 3 * index.vertex_index;
+				vertex.position = { tiny.vertices[iVec3 + 0], tiny.vertices[iVec3 + 1], tiny.vertices[iVec3 + 2] };
 			}
 			// else { should indicate error }
 
-			if (! attrib.normals.empty()) {
-				vertex.normal = {
-					attrib.normals[3 * index.normal_index + 0],
-					attrib.normals[3 * index.normal_index + 1],
-					attrib.normals[3 * index.normal_index + 2]
-				};
+			if (! tiny.normals.empty()) {
+				int iVec3 = 3 * index.normal_index;
+				vertex.normal = { tiny.normals[iVec3 + 0], tiny.normals[iVec3 + 1], tiny.normals[iVec3 + 2] };
 			}
 
-			if (! attrib.texcoords.empty()) {
-				vertex.texCoord = {
-					attrib.texcoords[2 * index.texcoord_index + 0],
-					attrib.texcoords[2 * index.texcoord_index + 1]
-				};
+			if (! tiny.texcoords.empty()) {
+				int iVec2 = 2 * index.texcoord_index;
+				vertex.texCoord = { tiny.texcoords[iVec2 + 0], tiny.texcoords[iVec2 + 1] };
 			}
 
-			/*if (! attrib.colors.empty()) {
-				vertex.color = {
-					attrib.colors[4 * index.vertex_index + 0],
-					attrib.colors[4 * index.vertex_index + 1],
-					attrib.colors[4 * index.vertex_index + 2],
-					1.0f
-				};
+			if (! tiny.colors.empty()) {
+				int iVec4 = 4 * index.vertex_index;
+				vertex.color = { tiny.colors[iVec4 + 0], tiny.colors[iVec4 + 1], tiny.colors[iVec4 + 2], 1.0f };
 			}
 			else
-				vertex.color = {1.0f, 1.0f, 1.0f, 1.0f};*/
+				vertex.color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 			if (uniqueVertices.count(vertex) == 0) {
-				uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
+				uniqueVertices[vertex] = static_cast<uint32_t>(vertices.count());
 				vertices.push_back(vertex);
 			} else {
 				++numRedundantVertices;
@@ -104,5 +100,6 @@ void ModelLoader::loadModel(string nameOBJFile)
 			indices.push_back(uniqueVertices[vertex]);
 		}
 	}
-	Log(RAW, "      done; vertices: %d, redundant vertices culled: %d", vertices.size(), numRedundantVertices);
+	Log(RAW, "      done; vertices: %d, redundant vertices culled: %d", vertices.count(), numRedundantVertices);
+	return tinybits;
 }
