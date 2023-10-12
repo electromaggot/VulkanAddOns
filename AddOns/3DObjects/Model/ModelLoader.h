@@ -8,21 +8,25 @@
 // Created 9/20/23 by Tadd Jensen
 //	© 0000 (uncopyrighted; use at will)
 //
+#ifndef ModelLoader_h
+#define ModelLoader_h
 
-#include "../../VertexTypes/Vertex3DTypes.h"
-
-#include "Universal.h"
+#include "VerticesDynamic.h"
 #include "FileSystem.h"
 
 
 class ModelLoader
 {
-	FileSystem	fileSystem;
-public: // for now
-	vector<Vertex3DNormalTexture> vertices;	//TJ_TODO: too special-purpose... this could get tricky
+	friend	class	 MeshObject;
+
+	FileSystem		 fileSystem;
+
+	VerticesDynamic	 vertices;
 	vector<uint32_t> indices;
 
 public:
-	void loadModel(string nameOBJFile);
+	AttributeBits loadModel(string nameOBJFile);
 
 };
+
+#endif	// ModelLoader_h
