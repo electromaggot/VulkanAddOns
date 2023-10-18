@@ -16,8 +16,8 @@
 #include <glm/gtx/hash.hpp>
 #include <unordered_map>
 
-typedef Vertex3DNormalTextureColor	CatchAllVertexType;
 
+typedef Vertex3DNormalTextureColor	CatchAllVertexType;
 
 namespace std {
 	template<> struct hash<CatchAllVertexType> {
@@ -48,8 +48,8 @@ AttributeBits ModelLoader::loadModel(string nameOBJFile)
 		return 0;
 	}
 
-	// Whatever arrays tinyobj::attrib_t returns (which are non-empty) determines
-	//	both which Vertex Type and shaders to use.
+	// Whatever arrays tinyobj::attrib_t returns (which are non-empty) determines both
+	//	which Vertex Type and shaders to use.  (wait, see related note at end of file)
 	AttributeBits tinybits = ((! tiny.vertices.empty())	 ? Attribits[POSITION] : 0)
 						   | ((! tiny.normals.empty())	 ? Attribits[NORMAL]   : 0)
 						   | ((! tiny.texcoords.empty()) ? Attribits[TEXCOORD] : 0)
@@ -101,3 +101,17 @@ AttributeBits ModelLoader::loadModel(string nameOBJFile)
 	Log(RAW, "      done; vertices: %d, redundant vertices culled: %d", vertices.count(), numRedundantVertices);
 	return tinybits;
 }
+
+
+/* DEV NOTE regarding choice of SHADERS
+Once the model is parsed, we know which Vertex attributes it specifies, such as normals or texture coordinates.
+ So above, we dynamically choose a Vertex Type containing those attributes, then fill the Vertex Array accordingly.
+What we don't do ("yet" anyway) is programmatically apply a Vertex Shader to match that Vertex format, which is a
+ critical must-have.  The Vertex Shader HAS TO match the format of the Vertex Buffer provided to it.  So:
+TODO: Unless DrawableSpec.shaders is specified, automatically choose/apply Shaders to match the Vertex format.
+	  Obviously if the DrawableSpec *does* supply these, it will override.
+Also, the Model's OBJ file may indicate, specifically name, a texure file.  So:
+TODO: If the OBJ references a Texture File that DrawableSpec.textures does not, add to that array and open it.
+	  Thus a user can use an OBJ file without having to look inside it in order to specify these things.
+These two additions may become required once users can import and select an OBJ via GUI from the web.
+*/
