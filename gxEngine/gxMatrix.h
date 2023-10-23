@@ -128,6 +128,8 @@ public:
 
 	void setIdentity();
 
+	void setScale(float unitFactor);
+
 	void setRotateXAxis(float radsAngle);
 	void setRotateYAxis(float radsAngle);
 	void setRotateZAxis(float radsAngle);
