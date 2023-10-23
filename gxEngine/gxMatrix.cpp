@@ -30,6 +30,16 @@ void gxMatrix::setIdentity()
 }
 
 
+// Simplistic scaling factor (unit- or 1.0-based) applied equally in each of three dimensions.
+//
+void gxMatrix::setScale(float unitFactor)
+{
+	scaleX *= unitFactor;
+	scaleY *= unitFactor;
+	scaleZ *= unitFactor;
+}
+
+
 // The following functions do a really fast rotate around a single axis, wiping out any other rotations on other axes.
 //	Only use one of these if you need just one simple rotation or as the first of subsequent rotations multiplied-in.
 //
