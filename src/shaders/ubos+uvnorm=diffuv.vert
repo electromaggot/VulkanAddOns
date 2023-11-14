@@ -27,14 +27,19 @@ layout(location = 0) out vec2 fragTexCoord;
 layout(location = 1) out float fragIntensity;	// Diffuse-shaded
 
 void main() {
-	const vec3 lightVector = normalize(vec3(0, 2, 1));	// points AT light source
+	const vec3 lightVector = vec3(0, 2, 1);		// light source "proportional position" relative to origin
 	const float ambient = 0.2;
+
+	const vec3 unitvec = normalize(lightVector);	// points AT light source
+	const vec3 lightUnscaledVector = vec3(unitvec[0] / ubo2.local[0][0],	// undo effect of scaling (if
+										  unitvec[1] / ubo2.local[1][1],	//	any) on lighting
+										  unitvec[2] / ubo2.local[2][2]);
 
 	mat4 modelView = ubo.view * ubo.model * ubo2.local;
 	gl_Position = ubo.proj * modelView * vec4(inPosition, 1.0);
 
 	vec3 modelviewNormalVector = mat3(modelView) * inNormal;
-	vec3 viewLightVector = mat3(ubo.view) * lightVector;
+	vec3 viewLightVector = mat3(ubo.view) * lightUnscaledVector;
 
 	fragIntensity = max(0.0, dot(modelviewNormalVector, viewLightVector)) + ambient;
 	fragTexCoord = inTexCoord;
