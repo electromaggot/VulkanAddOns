@@ -43,7 +43,7 @@ const IndexBufferDefaultIndexType CubeIndices[] = {
 
 
 
-class RenderableCube : public DrawableSpec
+class RenderableCube : public DrawableSpecifier
 {
 	VertexDescription<Vertex3D> vertexDescriptor;
 	MeshObject cube3DObject = {
@@ -56,7 +56,7 @@ class RenderableCube : public DrawableSpec
 
 public:
 	RenderableCube(UBO& refMVP)								// cube, vertex + index buffer
-		:	DrawableSpec(cube3DObject)						// ...this vertex buffer and  <──╮
+		:	DrawableSpecifier(cube3DObject)					// ...this vertex buffer and  <──╮
 	{														//								 │
 		shaders = { { VERTEX,	"mvp+xyz=xyz-vert.spv" },	// This shader expects... ───────┤
 					{ FRAGMENT, "xyz=color-frag.spv" } };	//								 │
