@@ -16,14 +16,14 @@
 #include "MeshObject.h"
 
 
-class RenderableCube : public DrawableSpec {
+class RenderableCube : public DrawableSpecifier {
 
 	VertexDescriptionDynamic vertexDescriptor;
 	MeshObject object3D = { vertexDescriptor };
 
 public:
 	RenderableCube(UBO& refMVP)
-		:	DrawableSpec(object3D)
+		:	DrawableSpecifier(object3D)
 	{
 		shaders = { { VERTEX,	"uv,mvp+norm=diffuv-vert.spv"},
 					{ FRAGMENT, "textuv+intens-frag.spv" } };
