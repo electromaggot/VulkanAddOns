@@ -5,7 +5,7 @@
 *.slo
 *.lo
 *.o
-*.obj
+#*.obj <-- no, archaic, now refers to 3D model.OBJ files
 
 # Precompiled Headers
 *.gch
