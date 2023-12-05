@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	IMPORTANT!  This file is how this project resolves #include "file" locations.
+	The reason has to do with 1) how VisualStudio searches for such files...
+	https://docs.microsoft.com/en-us/cpp/preprocessor/hash-include-directive-c-cpp
+	2) ...versus how other compilers do it (perhaps more flexibly)... 3) ...versus
+	how this project is structured, which is a design decision: to store .h files
+	along with their respective .cpp files, in a topical directory arrangement,
+	instead of all header files in one single directory.
+	If you add new class files to this project and encounter failures to resolve
+	your headers, add their new directories to the list below.
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <CPPaccompaniedHfileFolders>
+      src;..\src;..\src\Settings;..\src\VulkanModule;..\src\VulkanModule\Setup;..\src\VulkanModule\Assist;
+      ..\src\VulkanModule\AddOns;..\src\VulkanModule\AddOns\3DObjects;..\src\VulkanModule\AddOns\Renderables;
+      ..\src\VulkanModule\AddOns\VertexTypes;..\src\VulkanModule\Objects;
+      ..\src\VulkanModule\Platform;..\src\VulkanModule\Platform\OSAbstraction;..\src\VulkanModule\Platform\ImageHandling;
+      ..\src\VulkanModule\Platform\Logger;..\src\VulkanModule\Platform\FileSystem;
+      ..\src\VulkanModule\Platform\GUISystem;..\src\VulkanModule\Platform\GUISystem\stubs;..\External\imgui;..\External\imgui\examples
+    </CPPaccompaniedHfileFolders>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>CPPaccompaniedHfileFolders</_PropertySheetDisplayName>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="CPPaccompaniedHfileFolders">
+      <Value>$(CPPaccompaniedHfileFolders)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
