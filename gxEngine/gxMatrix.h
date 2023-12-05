@@ -1,6 +1,6 @@
 //
 // gxMatrix.h
-//	gxEngine (Vulkan game/graphics engine)
+//	gxEngine - Vulkan game/graphics classes
 //
 // While gxEngine embraces GLM, extend and overlay its mat4 to allow:
 //	- all gxObject3Ds to derive from this and have a matrix at their core.

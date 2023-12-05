@@ -7,8 +7,9 @@
 //	is pointing can either stay fixed, if not updated, or update if the camera moves to a new
 //	location to stay pointing at a particular point in space, for example the origin.
 // Includes/encapsulates:
-//	- field-of-view (vertical FOV)
-//	- an "up vector" for the camera.
+//	- field-of-view (vertical FOV assuming a landscape orientation, specified in
+//		degrees then baked-into the view matrix).
+//	- an "up vector" for the camera (also bakes-into matrix).
 //	- Model-View-Projection (MVP) matrices as a Uniform Buffer Object (UBO) used
 //		when Vulkan renders an object model from this camera position.
 //	- use of GLM for graphics primitives and basic operations like perspective, lookAt, translate, etc.
@@ -29,6 +30,7 @@
 #include "VulkanMath.h"				// for GLM
 #include "gxMatrix.h"
 #include "UniformBufferLiterals.h"
+#include "Customizer.h"
 
 
 const float UNSET = FLT_MIN;
@@ -36,18 +38,21 @@ const float UNSET = FLT_MIN;
 const float DEFAULT_DEGREE_FOV_IN_LANDSCAPE = 45.0f;
 
 const float DEFAULT_Z_NEAR_PLANE = 0.1f;
-const float DEFAULT_Z_FAR_PLANE = 1000.0f;
+const float DEFAULT_Z_FAR_PLANE	 = 1000.0f;
 
-const vec3	DEFAULT_UP_VECTOR = vec3(0.0f, -1.0f, 0.0f);			// negative Y points up, for Vulkan
+const vec3	DEFAULT_UP_VECTOR = vec3(0.0f,  1.0f, 0.0f);
+const vec3	VULKAN_UP_VECTOR  = vec3(0.0f, -1.0f, 0.0f);		// although for Vulkan, negative Y points "up" (note that
+																//	default is to treat models like they came from OpenGL)
 const vec3	DEFAULT_LOOK_AT_ORIGIN = vec3(0.0f, 0.0f, 0.0f);
-																	// Instead of initializing camera at the origin,
-const vec3	FAILSAFE_CAMERA_POSITION = vec3(0.0f, 20.0f, -50.0f);	//	start with it 50 back and 20 up "just in case"
-																	//	it's left unset & rendered object is at origin.
+																// Instead of initializing camera at the origin,
+const vec3	FAILSAFE_CAMERA_POSITION = vec3(0.0f, 2.0f, 4.0f);	//	start with it 4 units back and 2 up "just in case"
+																//	it's left unset & the rendered object is at origin.
+																//	(e.g. that's 4 meters back, 2 up, in 1-meter units)
 
 class gxCamera : public gxMatrix
 {
 public:
-	gxCamera(VkExtent2D& extent)
+	gxCamera(VkExtent2D& extent, Customizer coordinateSystemChange = NONE)
 		:	swapchainExtent(extent),
 			uboMVP(MVP),
 			zNearPlane(DEFAULT_Z_NEAR_PLANE),
@@ -58,7 +63,9 @@ public:
 			previousScreenHeight(UNSET)
 	{
 		position3D = FAILSAFE_CAMERA_POSITION;
-	}
+
+		defaultToLeftHandRendering = (coordinateSystemChange & MODELED_FOR_VULKAN);	// i.e. for all models rendered hence-
+	}																				//	forth (versus on a per-model basis)
 
 	~gxCamera()
 	{ }
@@ -78,6 +85,9 @@ private:
 	float previousScreenWidth;
 	float previousScreenHeight;
 
+	bool  defaultToLeftHandRendering = false;
+
+	void  initialize();
 		// METHODS
 public:
 	void  update(float deltaSeconds);

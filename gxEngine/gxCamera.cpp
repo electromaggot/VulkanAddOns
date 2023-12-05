@@ -3,6 +3,12 @@
 //
 // See header file comment for overview.
 //
+//	  which			Typically only needs Updating
+//	  Matrix		 upon change to
+//  ----------		----------------
+// 	Projection		device orientation or window size.
+// 	   View			camera's position/orientation.
+//
 // Created 1/27/19 by Tadd Jensen
 //	© 2023 Megaphone Games under <TBD> License (i.e. project will use other FOSS-licensed code)
 //
@@ -10,6 +16,14 @@
 #include <stdio.h>		// for printf
 
 
+void gxCamera::initialize()
+{
+
+}
+
+
+// Runs every frame: check to see if window size or device orientation changed,
+//													thus altering Projection.
 void gxCamera::update(float deltaSeconds)
 {
 	if (previousScreenWidth != swapchainExtent.width || previousScreenHeight != swapchainExtent.height) {
@@ -33,6 +47,8 @@ void gxCamera::updateProjectionMatrix(float aspectRatio, float degreeLandscapeFO
 	float verticalFOV = adjustedFOVperOrientation(landscapeVerticalFOV, aspectRatio);
 
 	MVP.proj = glm::perspective(verticalFOV, aspectRatio, zNearPlane, zFarPlane);
+
+	MVP.proj[1][1] *= -1.0f;
 }
 
 float gxCamera::adjustedFOVperOrientation(float landscapeVerticalFOV, float aspectRatio)
