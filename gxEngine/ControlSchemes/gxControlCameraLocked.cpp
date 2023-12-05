@@ -19,8 +19,8 @@ void gxControlCameraLocked::handlePrimaryPressAndDrag(int toX, int toY)
 	{
 		vec3 position = camera.position3D;
 		float moveX = pressX - toX;  float moveY = pressY - toY;
-		camera.matrix = glm::rotate(mat4(1.0f), radians(priorMoveX - moveX), vec3(0.0f, 1.0f, 0.0f));	 // moving X-wise rotates around Y-axix
-		camera.matrix = glm::rotate(camera.matrix, radians(priorMoveY - moveY), vec3(1.0f, 0.0f, 0.0f)); //		Y-wise around X-axis
+		camera.matrix = glm::rotate(mat4(1.0f), radians(moveX - priorMoveX), vec3(0.0f, 1.0f, 0.0f));	 // moving X-wise rotates around Y-axix
+		camera.matrix = glm::rotate(camera.matrix, radians(moveY - priorMoveY), vec3(1.0f, 0.0f, 0.0f)); //		Y-wise around X-axis
 			// Note that the above rotations *could* be applied directly in radians, but we'd have to multiply a "sensitivity"
 			//	factor.  It just so happens that by chance the mouse movements translate well "straight across" to degrees.
 		priorMoveX = moveX;  priorMoveY = moveY;
