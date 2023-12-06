@@ -7,7 +7,7 @@ An [XCFramework](https://developer.apple.com/documentation/xcode/creating-a-mult
 First, follow the instructions in `setupOrUpdateSDLsrc.sh` to grab SDL's source code and build it.  You can execute that file as a script to produce the links it contains commands for.\
 Each project has two targets/schemes: `SDL`[`_image`]`-iOS_singleFramework` and `Build_universal_XCFramework`.  Both should build -- the first without error, but note that the XCFramework scheme does show an issue (*error: accessing build database ".../XCBuildData/build.db": disk I/O error*) BUT despite the "Build failed" ending, they still successfully build binaries.
 
-Second and last, run `thenMakeTheFrameworks.sh`...  It may also produce what look like errors on the command line, but should succeed in finalizing the `.XCFramework` files.  Finally and for convenience, this script creates symbolic links to those frameworks in this same directory.
+Second and last, run `thenMakeTheFrameworks.sh`...  It may also produce what look like errors on the command line, but should succeed in finalizing the `.XCFramework` files.  For convenience, this script creates symbolic links to those frameworks in this same directory.
 
 Note: the `.xcodeproj` project files here reflect source code current as of:
  - SDL version 2.28.5
