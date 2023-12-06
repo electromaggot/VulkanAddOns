@@ -1,11 +1,13 @@
-On iOS, this project uses [XCFrameworks](https://developer.apple.com/documentation/xcode/creating-a-multi-platform-binary-framework-bundle) for both the [SDL](https://github.com/libsdl-org/SDL/releases) and [SDL_image](https://github.com/libsdl-org/SDL_image/releases) libraries, which serve as an "abstraction layer" to the OS and help this project to be multiplatform.
+On iOS, this project uses **XCFramework**s for both the [SDL](https://github.com/libsdl-org/SDL/releases) and [SDL_image](https://github.com/libsdl-org/SDL_image/releases) libraries, which serve as an "abstraction layer" to the OS and help this project to be multiplatform.
+
+An [XCFramework](https://developer.apple.com/documentation/xcode/creating-a-multi-platform-binary-framework-bundle) is Apple's modern equivalent to what used to be called a "fat framework."  It conveniently wraps various configurations (debug, release) and platforms (iphoneos, iphonesimulator, ipados, etc.) into a single Framework.  While separate libraries for debug/release are a hassle-but-manageable, throw in platforms like simulator (x86 code vs. arm) and it becomes unmanageable.  Unfortunately SDL doesn't distribute binaries for or build its libraries into the XCFramework format, so we have to.  But once you do, it's really nice!
 
 **Building `SDL-iOS.xcframework` and `SDL_image-iOS.xcframework`**
 
-First, follow the instructions in `setupOrUpdateSDLsrc.sh` to grab SDL's source code and build it.
-As it says, those builds may produce a strange ("i/O") error, but they will still build binaries.  You can execute that file as a script to produce the links it contains commands for.
+First, follow the instructions in `setupOrUpdateSDLsrc.sh` to grab SDL's source code and build it.  You can execute that file as a script to produce the links it contains commands for.\
+Each project has two targets/schemes: `SDL`[`_image`]`-iOS_singleFramework` and `Build_universal_XCFramework`.  Both should build -- the first without error, but note that the XCFramework scheme does show an issue (*error: accessing build database ".../XCBuildData/build.db": disk I/O error*) BUT despite the "Build failed" ending, they still successfully build binaries.
 
-Second and last, run `thenMakeTheFrameworks.sh`...  It may also produce what look like errors on the command line, but should succeed in building the `.XCFramework` files.  Finally and for convenience, this script creates symbolic links to those frameworks in this same directory.
+Second and last, run `thenMakeTheFrameworks.sh`...  It may also produce what look like errors on the command line, but should succeed in finalizing the `.XCFramework` files.  Finally and for convenience, this script creates symbolic links to those frameworks in this same directory.
 
 Note: the `.xcodeproj` project files here reflect source code current as of:
  - SDL version 2.28.5
