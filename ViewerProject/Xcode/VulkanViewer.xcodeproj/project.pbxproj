@@ -252,8 +252,8 @@
 		9E128D9B247C358D00032E8E /* Universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Universal.h; sourceTree = "<group>"; };
 		9E240CEC2334ED46003D0269 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E2914212989DED90017E7CE /* MoltenVK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MoltenVK.xcframework; path = ../external/VulkanSDK/MoltenVK/MoltenVK.xcframework; sourceTree = "<group>"; };
-		9E29142B298AFB0B0017E7CE /* SDL-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL-iOS.xcframework"; path = "iOSFrameworksBuilder/SDL-iOS.xcframework"; sourceTree = "<group>"; };
-		9E29144C298B901A0017E7CE /* SDL_image-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL_image-iOS.xcframework"; path = "iOSFrameworksBuilder/SDL_image-iOS.xcframework"; sourceTree = "<group>"; };
+		9E29142B298AFB0B0017E7CE /* SDL-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL-iOS.xcframework"; path = "iOSFrameworksMaker/SDL-iOS.xcframework"; sourceTree = "<group>"; };
+		9E29144C298B901A0017E7CE /* SDL_image-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL_image-iOS.xcframework"; path = "iOSFrameworksMaker/SDL_image-iOS.xcframework"; sourceTree = "<group>"; };
 		9E2A277C2215331B00B4FDBC /* PlatformSDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformSDL.cpp; sourceTree = "<group>"; };
 		9E2A277D2215331B00B4FDBC /* iPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPlatform.h; sourceTree = "<group>"; };
 		9E2A277F2215331B00B4FDBC /* PlatformSDL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformSDL.h; sourceTree = "<group>"; };
