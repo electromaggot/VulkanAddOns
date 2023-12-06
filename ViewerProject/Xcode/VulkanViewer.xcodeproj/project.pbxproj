@@ -105,8 +105,8 @@
 		9EDC51672AE026620098F52D /* DepthBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC51642AE026620098F52D /* DepthBuffer.cpp */; };
 		9EDC51682AE026620098F52D /* ImageResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC51652AE026620098F52D /* ImageResource.cpp */; };
 		9EDC51692AE026620098F52D /* ImageResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC51652AE026620098F52D /* ImageResource.cpp */; };
-		9EDC51962AE4DEAA0098F52D /* textures in AddOns */ = {isa = PBXBuildFile; fileRef = 9EDC51952AE4DEAA0098F52D /* textures */; };
-		9EDC51972AE4DEAA0098F52D /* textures in AddOns */ = {isa = PBXBuildFile; fileRef = 9EDC51952AE4DEAA0098F52D /* textures */; };
+		9EDC51962AE4DEAA0098F52D /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 9EDC51952AE4DEAA0098F52D /* textures */; };
+		9EDC51972AE4DEAA0098F52D /* textures in Resources */ = {isa = PBXBuildFile; fileRef = 9EDC51952AE4DEAA0098F52D /* textures */; };
 		9EDC519F2AE633C60098F52D /* textuv+intens.frag in Resources */ = {isa = PBXBuildFile; fileRef = 9EDC519D2AE633C50098F52D /* textuv+intens.frag */; };
 		9EDC51A02AE633C60098F52D /* textuv+intens.frag in Resources */ = {isa = PBXBuildFile; fileRef = 9EDC519D2AE633C50098F52D /* textuv+intens.frag */; };
 		9EDC51A12AE633C60098F52D /* ubos+uvnorm=diffuv.vert in Resources */ = {isa = PBXBuildFile; fileRef = 9EDC519E2AE633C60098F52D /* ubos+uvnorm=diffuv.vert */; };
@@ -252,8 +252,8 @@
 		9E128D9B247C358D00032E8E /* Universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Universal.h; sourceTree = "<group>"; };
 		9E240CEC2334ED46003D0269 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E2914212989DED90017E7CE /* MoltenVK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MoltenVK.xcframework; path = ../external/VulkanSDK/MoltenVK/MoltenVK.xcframework; sourceTree = "<group>"; };
-		9E29142B298AFB0B0017E7CE /* SDL-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL-iOS.xcframework"; path = "../../lib/SDL-iOS.xcframework"; sourceTree = "<group>"; };
-		9E29144C298B901A0017E7CE /* SDL_image-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL_image-iOS.xcframework"; path = "../../lib/SDL_image-iOS.xcframework"; sourceTree = "<group>"; };
+		9E29142B298AFB0B0017E7CE /* SDL-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL-iOS.xcframework"; path = "iOSFrameworksBuilder/SDL-iOS.xcframework"; sourceTree = "<group>"; };
+		9E29144C298B901A0017E7CE /* SDL_image-iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "SDL_image-iOS.xcframework"; path = "iOSFrameworksBuilder/SDL_image-iOS.xcframework"; sourceTree = "<group>"; };
 		9E2A277C2215331B00B4FDBC /* PlatformSDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformSDL.cpp; sourceTree = "<group>"; };
 		9E2A277D2215331B00B4FDBC /* iPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPlatform.h; sourceTree = "<group>"; };
 		9E2A277F2215331B00B4FDBC /* PlatformSDL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformSDL.h; sourceTree = "<group>"; };
@@ -893,7 +893,7 @@
 				9EDD14332AE9925300CBC7CE /* Images.xcassets in Resources */,
 				9EDC51A22AE633C60098F52D /* ubos+uvnorm=diffuv.vert in Resources */,
 				9E29141A298818E90017E7CE /* vboMesh.vert in Resources */,
-				9EDC51972AE4DEAA0098F52D /* textures in AddOns */,
+				9EDC51972AE4DEAA0098F52D /* textures in Resources */,
 				9EDC51A02AE633C60098F52D /* textuv+intens.frag in Resources */,
 				9E29141C298818EF0017E7CE /* vboMesh.frag in Resources */,
 				9E82E5D0220A345B00AC8F7D /* compiledShaders in Resources */,
@@ -909,7 +909,7 @@
 				9E6B2DE22332AF5300F7575D /* Images.xcassets in Resources */,
 				9E240CED2334ED46003D0269 /* LaunchScreen.storyboard in Resources */,
 				9EDC519F2AE633C60098F52D /* textuv+intens.frag in Resources */,
-				9EDC51962AE4DEAA0098F52D /* textures in AddOns */,
+				9EDC51962AE4DEAA0098F52D /* textures in Resources */,
 				9EDC51A12AE633C60098F52D /* ubos+uvnorm=diffuv.vert in Resources */,
 				9ECA3982220255BE00B2A7B3 /* compiledShaders in Resources */,
 			);
