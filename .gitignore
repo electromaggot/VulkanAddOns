@@ -36,6 +36,10 @@ build
 xcuserdata
 xcshareddata
 *.xcworkspace
+*.xcframework
 
-# Misc
+# Miscellaneous or specific-to-this-specific-project
 external
+# (and these symlinks, which gitignore sees as files)
+**/iOSFrameworksMaker/SDL
+**/iOSFrameworksMaker/SDL_image
