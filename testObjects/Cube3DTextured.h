@@ -102,8 +102,8 @@ public:															// cube, vertex + normal buffer
 		shaders = { { VERTEX,	"ubos+uvnorm=diffuv-vert.spv"},	// This shader expects... ───────┤
 					{ FRAGMENT, "textuv+intens-frag.spv" } };	//								 │
 		pUBOs = { refMVP, uboMatrix };							//  ...these uniform buffers, <──╯
-		textures = { { "C4Crate.png" }, { } };					//  ...and textures too, array
-	}								 // ^^^							<--	"null" terminated!
+		textures = { { "C4Crate.png" } };						//  ...and textures too (as an
+	}															//	   array, here with default properties).
 };
 
 
