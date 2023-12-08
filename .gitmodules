@@ -1,0 +1,3 @@
+[submodule "ViewerProject/src/VulkanModule"]
+	path = ViewerProject/src/VulkanModule
+	url = https://github.com/electromaggot/VulkanModule
