@@ -6,7 +6,7 @@ if [ -n "$(grep -i "name.*debian" /etc/os-release)" ]; then
   COMPILER=/usr/local/bin/glslang
 fi
 
-DSTDIR=../../CMakeLinux/build/compiledShaders
+DSTDIR=../ViewerProject/CMakeLinux/build/compiledShaders
 
 if [ ! -d $DSTDIR ]; then
 
