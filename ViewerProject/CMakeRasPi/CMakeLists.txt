@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
+set(CMAKE_C_COMPILER /usr/bin/clang-14)
+set(CMAKE_CPP_COMPILER /usr/bin/clang-cpp-14)
+set(CMAKE_CXX_COMPILER /usr/bin/clang++-14)
+set(CMAKE_LINKER /usr/bin/ld.lld-14)
+
 project(VulkanViewer CXX)
 
 
@@ -58,13 +63,20 @@ AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ImageHandling/" Platform__I
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/Logger/" Platform__Logger)
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/OSAbstraction/" Platform__OSAbstraction)
+set(Platform__OSAbstraction
+    "../../../VulkanModule/Platform/OSAbstraction/PlatformSDL.cpp"
+)
+source_group("Platform\\OSAbstraction" FILES ${Platform__OSAbstraction})
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ControlScheme/" Platform__ControlScheme)
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/" Vulkan__Adjunct)
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/Renderables/" Vulkan__Adjunct__Renderables)
+set(Vulkan__Adjunct__Renderables
+    "../../../VulkanModule/Adjunct/Renderables/AddOns.cpp"
+    "../../../VulkanModule/Adjunct/Renderables/FixedRenderable.cpp"
+)
+source_group("Vulkan\\Adjunct\\Renderables" FILES ${Vulkan__Adjunct__Renderables})
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/VertexTypes/" Vulkan__Adjunct__VertexTypes)
 
@@ -175,8 +187,8 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Post build events
         TARGET ${PROJECT_NAME}
         POST_BUILD
         COMMAND if [ ! -d "build" ]\; then mkdir build\; fi
-        COMMAND if [ ! -L "build/compiledShaders" ]\; then cd build\; ln -s "../../CMakeLinux/build/compiledShaders" \; cd "../../graphics/shaders" \; ./compileLinux.sh\; fi
-        COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../graphics/assets/textures" \; fi
+        COMMAND if [ ! -L "build/compiledShaders" ]\; then cd build\; ln -s "../../CMakeLinux/build/compiledShaders" \; cd "../../../shaders" \; ./compileLinux.sh\; fi
+        COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../../testAssets/textures" \; fi
         COMMENT "Post-build events complete."
     )
 endif()
@@ -185,7 +197,7 @@ endif()
 #if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Custom build events
 #    add_custom_command(
 #        OUTPUT "compiledShaders"
-#        COMMAND cd ../graphics/shaders
+#        COMMAND cd ../../shaders
 #        COMMAND compileLinux.sh
 #        COMMENT "Shaders compiled."
 #    )
