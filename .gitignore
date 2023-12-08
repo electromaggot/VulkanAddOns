@@ -37,9 +37,16 @@ xcuserdata
 xcshareddata
 *.xcworkspace
 *.xcframework
+# and specific-to-this-specific-project
+# (these symlinks, which gitignore sees as files)
+**/iOSFrameworksMaker/SDL
+**/iOSFrameworksMaker/SDL_image
+
+# CMake(Linux/RaspberryPi)-specific
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
 
 # Miscellaneous or specific-to-this-specific-project
 external
-# (and these symlinks, which gitignore sees as files)
-**/iOSFrameworksMaker/SDL
-**/iOSFrameworksMaker/SDL_image
