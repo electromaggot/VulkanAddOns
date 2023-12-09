@@ -4,7 +4,7 @@ Running on Ubuntu **22.04** was successfully tested with [both modern and old (w
 
 You will need:
 
-0. **Clang** compiler/linker suite
+0. **Clang** compiler (front-end) collection
 
    ViewerProject requires `Clang`, which is not part of the default Ubuntu distribution.  Install the latest version supported by 22.04 via:
 
