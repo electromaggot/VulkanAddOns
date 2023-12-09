@@ -4,7 +4,15 @@ Running on Ubuntu **22.04** was successfully tested with [both modern and old (w
 
 You will need:
 
-1. **Vulkan SDK** Linux version
+0. **Clang** compiler/linker suite
+
+   ViewerProject requires `Clang`, which is not part of the default Ubuntu distribution.  Install the latest version supported by 22.04 via:
+
+   ```ruby
+   sudo apt install clang-15
+   ```
+   
+2. **Vulkan SDK** Linux version
 
    LunarG develops this SDK's Linux version on Ubuntu and provides their builds, making it really easy to download/install via `apt`.
 
