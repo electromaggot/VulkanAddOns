@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
-#set(CMAKE_C_COMPILER /usr/bin/clang-14)
-#set(CMAKE_CPP_COMPILER /usr/bin/clang-cpp-14)
-#set(CMAKE_CXX_COMPILER /usr/bin/clang++-14)
-#set(CMAKE_LINKER /usr/bin/ld.lld-14)
+set(CMAKE_C_COMPILER /usr/bin/clang-15)
+set(CMAKE_CPP_COMPILER /usr/bin/clang-cpp-15)
+set(CMAKE_CXX_COMPILER /usr/bin/clang++-15)
+set(CMAKE_LINKER /usr/bin/ld.lld-15)
 
 project(VulkanViewer CXX)
 
@@ -187,7 +187,7 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Post build events
         TARGET ${PROJECT_NAME}
         POST_BUILD
         COMMAND if [ ! -d "build" ]\; then mkdir build\; fi
-        COMMAND if [ ! -d "build/compiledShaders" ]\; then mkdir "build/compiledShaders" \; cd "../../../shaders" \; ./compileLinux.sh\; fi
+        COMMAND if [ ! -d "build/compiledShaders" ]\; then mkdir "build/compiledShaders" \; cd "../../shaders" \; ./compileLinux.sh\; fi
         COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../../testAssets/textures" \; fi
         COMMENT "Post-build events complete."
     )
