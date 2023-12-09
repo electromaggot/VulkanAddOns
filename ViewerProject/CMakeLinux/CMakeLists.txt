@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
 
 set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
 
-project(HelloVulkanSDL CXX)
+#set(CMAKE_C_COMPILER /usr/bin/clang-14)
+#set(CMAKE_CPP_COMPILER /usr/bin/clang-cpp-14)
+#set(CMAKE_CXX_COMPILER /usr/bin/clang++-14)
+#set(CMAKE_LINKER /usr/bin/ld.lld-14)
+
+project(VulkanViewer CXX)
 
 
 if(NOT CMAKE_PLATFORM_NAME)				# Set target architecture type if empty.
@@ -34,115 +39,60 @@ set(EXECUTABLE_OUTPUT_PATH build)			# sub-directory destination for built binary
 
 #################### Source groups ######################
 
-set(VulkanViewer
-    "../src/*.cpp"
-    "../src/*.h"
-)
-source_group("VulkanViewer" FILES ${VulkanViewer})
+AUX_SOURCE_DIRECTORY("src/" Platform__Linux)
 
-set(VulkanViewer__Settings
-    "../src/Settings/*.cpp"
-    "../src/Settings/*.h"
-    "../src/Settings/*.hpp"
-)
-source_group("VulkanViewer\\Settings" FILES ${VulkanViewer__Settings})
+AUX_SOURCE_DIRECTORY("../src/" VulkanViewer)
 
-set(Graphics__Shaders
-    "../graphics/shaders/*.frag"
-    "../graphics/shaders/*.vert"
-)
-source_group("Graphics\\Shaders" FILES ${Graphics__Shaders})
+AUX_SOURCE_DIRECTORY("../src/Settings/" VulkanViewer__Settings)
 
-set(Graphics__MeshObjects
-    "../graphics/meshObjects/*.cpp"
-)
-source_group("Graphics\\MeshObjects" FILES ${Graphics__MeshObjects})
+AUX_SOURCE_DIRECTORY("../../shaders/" Graphics__Shaders)
 
-set(Platform
-    "../src/VulkanModule/Platform/*.cpp"
-    "../src/VulkanModule/Platform/*.h"
-)
-source_group("Platform" FILES ${Platform})
+AUX_SOURCE_DIRECTORY("../../testObjects/" Graphics__MeshObjects)
 
-set(Platform__FileSystem
-    "../src/VulkanModule/Platform/FileSystem/*.cpp"
-    "../src/VulkanModule/Platform/FileSystem/*.h"
-)
-source_group("Platform\\FileSystem" FILES ${Platform__FileSystem})
+AUX_SOURCE_DIRECTORY("../../gxEngine/" GraphicsEngine)
 
-set(Platform__GUISystem
-    "../src/VulkanModule/Platform/GUISystem/stubs/*.cpp"
-    "../src/VulkanModule/Platform/GUISystem/stubs/*.h"
-)
-source_group("Platform\\GUISystem" FILES ${Platform__GUISystem})
+AUX_SOURCE_DIRECTORY("../../gxEngine/ControlSchemes" GraphicsEngine__ControlSchemes)
 
-set(Platform__ImageHandling
-    "../src/VulkanModule/Platform/ImageHandling/*.h"
-)
-source_group("Platform\\ImageHandling" FILES ${Platform__ImageHandling})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/" Platform)
 
-set(Platform__Logger
-    "../src/VulkanModule/Platform/Logger/*.cpp"
-    "../src/VulkanModule/Platform/Logger/*.h"
-)
-source_group("Platform\\Logger" FILES ${Platform__Logger})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/FileSystem/" Platform__FileSystem)
 
-set(Platform__Linux
-    "src/*.h"
-)
-source_group("Platform\\Linux" FILES ${Platform__Linux})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/GUISystem/stubs/" Platform__GUISystem)
+
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ImageHandling/" Platform__ImageHandling)
+
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/Logger/" Platform__Logger)
 
 set(Platform__OSAbstraction
-    "../src/VulkanModule/Platform/OSAbstraction/*.cpp"
-    "../src/VulkanModule/Platform/OSAbstraction/*.h"
+    "../../../VulkanModule/Platform/OSAbstraction/PlatformSDL.cpp"
 )
 source_group("Platform\\OSAbstraction" FILES ${Platform__OSAbstraction})
 
-set(Platform__ControlScheme
-    "../src/VulkanModule/Platform/ControlScheme/*.h"
-)
-source_group("Platform\\ControlScheme" FILES ${Platform__ControlScheme})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ControlScheme/" Platform__ControlScheme)
 
-set(Vulkan__Adjunct
-    "../src/VulkanModule/Adjunct/*.cpp"
-    "../src/VulkanModule/Adjunct/*.h"
-)
-source_group("Vulkan\\Adjunct" FILES ${Vulkan__Adjunct})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/" Vulkan__Adjunct)
 
 set(Vulkan__Adjunct__Renderables
-    "../src/VulkanModule/Adjunct/Renderables/*.cpp"
-    "../src/VulkanModule/Adjunct/Renderables/*.h"
+    "../../../VulkanModule/Adjunct/Renderables/AddOns.cpp"
+    "../../../VulkanModule/Adjunct/Renderables/FixedRenderable.cpp"
 )
 source_group("Vulkan\\Adjunct\\Renderables" FILES ${Vulkan__Adjunct__Renderables})
 
-set(Vulkan__Adjunct__VertexTypes
-    "../src/VulkanModule/Adjunct/VertexTypes/*.cpp"
-    "../src/VulkanModule/Adjunct/VertexTypes/*.h"
-)
-source_group("Vulkan\\Adjunct\\VertexTypes" FILES ${Vulkan__Adjunct__VertexTypes})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/VertexTypes/" Vulkan__Adjunct__VertexTypes)
 
-set(Vulkan__Assist
-    "../src/VulkanModule/Assist/*.cpp"
-    "../src/VulkanModule/Assist/*.h"
-source_group("Vulkan\\Assist" FILES ${Vulkan__Assist})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Assist/" Vulkan__Assist)
 
-set(Vulkan__Objects
-    "../src/VulkanModule/Objects/*.cpp"
-    "../src/VulkanModule/Objects/*.h"
-)
-source_group("Vulkan\\Objects" FILES ${Vulkan__Objects})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Objects/" Vulkan__Objects)
 
-set(Vulkan__Setup
-    "../src/VulkanModule/Setup/*.cpp"
-    "../src/VulkanModule/Setup/*.h"
-)
-source_group("Vulkan\\Setup" FILES ${Vulkan__Setup})
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Setup/" Vulkan__Setup)
 
 set(ALL_FILES
     ${VulkanViewer}
     ${VulkanViewer__Settings}
     ${Graphics__Shaders}
     ${Graphics__MeshObjects}
+    ${GraphicsEngine}
+    ${GraphicsEngine__ControlSchemes}
     ${Platform}
     ${Platform__FileSystem}
     ${Platform__GUISystem}
@@ -196,21 +146,24 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Include directories
         "${CMAKE_CURRENT_SOURCE_DIR}/src;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../src;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../src/Settings;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Setup;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Assist;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Adjunct;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Adjunct/Renderables;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Adjunct/VertexTypes;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Objects;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/OSAbstraction;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/ImageHandling;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/Logger;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/FileSystem;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/GUISystem;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/GUISystem/stubs;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../src/VulkanModule/Platform/ControlScheme;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../testObjects;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../gxEngine;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../gxEngine/ControlSchemes;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Setup;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Assist;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Adjunct;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Adjunct/Renderables;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Adjunct/VertexTypes;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Objects;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/OSAbstraction;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/ImageHandling;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/Logger;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/FileSystem;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/GUISystem;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/GUISystem/stubs;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/ControlScheme;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../External/imgui;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../External/imgui/examples;"
     )
@@ -234,8 +187,8 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Post build events
         TARGET ${PROJECT_NAME}
         POST_BUILD
         COMMAND if [ ! -d "build" ]\; then mkdir build\; fi
-        COMMAND if [ ! -d "build/compiledShaders" ]\; then mkdir "build/compiledShaders" \; cd "../graphics/shaders" \; ./compileLinux.sh\; fi
-        COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../graphics/assets/textures" \; fi
+        COMMAND if [ ! -d "build/compiledShaders" ]\; then mkdir "build/compiledShaders" \; cd "../../../shaders" \; ./compileLinux.sh\; fi
+        COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../../testAssets/textures" \; fi
         COMMENT "Post-build events complete."
     )
 endif()
@@ -244,7 +197,7 @@ endif()
 #if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Custom build events
 #    add_custom_command(
 #        OUTPUT "compiledShaders"
-#        COMMAND cd ../graphics/shaders
+#        COMMAND cd ../../shaders
 #        COMMAND compileLinux.sh
 #        COMMENT "Shaders compiled."
 #    )
