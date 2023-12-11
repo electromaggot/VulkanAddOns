@@ -539,7 +539,7 @@
 			children = (
 				9E7C112029CFD42100D6DDEB /* gxCamera.cpp */,
 			);
-			name = "iOS-specific";
+			path = "iOS-specific";
 			sourceTree = "<group>";
 		};
 		9E7C113029DC988100D6DDEB /* ControlScheme */ = {
