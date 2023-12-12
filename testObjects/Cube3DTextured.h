@@ -99,7 +99,8 @@ public:															// cube, vertex + normal buffer
 		:	DrawableSpecifier(cube3DObject),					// ...this vertex buffer and  <──╮
 			uboMatrix(matrix)									//								 │
 	{															//								 │
-		shaders = { { VERTEX,	"ubos+uvnorm=diffuv-vert.spv"},	// This shader expects... ───────┤
+		name	=	"BoomBox";									//								 │
+		shaders	= { { VERTEX,	"ubos+uvnorm=diffuv-vert.spv"},	// This shader expects... ───────┤
 					{ FRAGMENT, "textuv+intens-frag.spv" } };	//								 │
 		pUBOs = { refMVP, uboMatrix };							//  ...these uniform buffers, <──╯
 		textures = { { "C4Crate.png" } };						//  ...and textures too (as an
