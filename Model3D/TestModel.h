@@ -27,7 +27,8 @@ public:
 	DrawableObject(UBO& refMVP)
 		:	DrawableSpecifier(object3D)
 	{
-		ModelLoader  load(mesh, "viking_room.obj");
+		name	=	"viking_room.obj";			// object's "name" can arbitrarily be same as its filename
+		ModelLoader load(mesh, name);
 		object3D.indexType = MESH_LARGE_INDEX;	// temporary, tiny_obj_loader always returns 32-bit indices
 
 		shaders = { { VERTEX,	"uv,mvp+norm=diffuv-vert.spv"},
