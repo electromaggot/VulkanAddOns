@@ -13,20 +13,20 @@
 
 #include "VerticesDynamic.h"
 #include "FileSystem.h"
+#include "MeshObject.h"
 
 
 class ModelLoader
 {
-	friend	class	 MeshObject;
-
-	FileSystem		 fileSystem;
-
 	VerticesDynamic	 vertices;
 	vector<uint32_t> indices;
 
-public:
-	AttributeBits loadModel(string nameOBJFile);
+	FileSystem		 fileSystem;
 
+public:
+	ModelLoader(MeshObject& mesh, string nameOBJFile);
+
+	AttributeBits loadModel(string nameOBJFile);
 };
 
 #endif	// ModelLoader_h

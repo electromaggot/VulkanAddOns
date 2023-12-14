@@ -32,6 +32,19 @@ namespace std {
 }
 
 
+ModelLoader::ModelLoader(MeshObject& mesh, string nameOBJFile)
+{
+	AttributeBits attribits = loadModel(nameOBJFile);
+
+	mesh.vertexType.initialize(attribits);
+
+	mesh.vertices	 = vertices.pBytes;
+	mesh.vertexCount = vertices.count();
+	mesh.indices	 = &indices[0];
+	mesh.indexCount	 = (uint32_t) indices.size();
+}
+
+
 AttributeBits ModelLoader::loadModel(string nameOBJFile)
 {
 	tinyobj::attrib_t tiny;
