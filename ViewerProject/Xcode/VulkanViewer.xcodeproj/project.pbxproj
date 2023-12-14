@@ -101,6 +101,10 @@
 		9EC4858B222DE445007C7242 /* PlatformCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EC4858A222DE445007C7242 /* PlatformCommon.cpp */; };
 		9EC4858C222DE445007C7242 /* PlatformCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EC4858A222DE445007C7242 /* PlatformCommon.cpp */; };
 		9ECA3982220255BE00B2A7B3 /* compiledShaders in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA3981220255BE00B2A7B3 /* compiledShaders */; };
+		9ED23B3A2B2A0AFA00DAC8DD /* ModelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */; };
+		9ED23B3B2B2C2B0400DAC8DD /* ModelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */; };
+		9ED23B3F2B2C9EC200DAC8DD /* models in Resources */ = {isa = PBXBuildFile; fileRef = 9ED23B3E2B2C9EC100DAC8DD /* models */; };
+		9ED23B402B2C9EC200DAC8DD /* models in Resources */ = {isa = PBXBuildFile; fileRef = 9ED23B3E2B2C9EC100DAC8DD /* models */; };
 		9EDC51662AE026620098F52D /* DepthBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC51642AE026620098F52D /* DepthBuffer.cpp */; };
 		9EDC51672AE026620098F52D /* DepthBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC51642AE026620098F52D /* DepthBuffer.cpp */; };
 		9EDC51682AE026620098F52D /* ImageResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDC51652AE026620098F52D /* ImageResource.cpp */; };
@@ -346,6 +350,12 @@
 		9EC4858D2231A31F007C7242 /* PlatformExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformExtension.h; sourceTree = "<group>"; };
 		9ECA3981220255BE00B2A7B3 /* compiledShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = compiledShaders; sourceTree = "<group>"; };
 		9ED23B312B1ED35400DAC8DD /* Cube3DTextured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cube3DTextured.h; path = ../../testObjects/Cube3DTextured.h; sourceTree = "<group>"; };
+		9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelLoader.cpp; path = ../../Model3D/ModelLoader.cpp; sourceTree = "<group>"; };
+		9ED23B372B2A0AFA00DAC8DD /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestModel.h; path = ../../Model3D/TestModel.h; sourceTree = "<group>"; };
+		9ED23B382B2A0AFA00DAC8DD /* ModelDefSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelDefSpec.h; path = ../../Model3D/ModelDefSpec.h; sourceTree = "<group>"; };
+		9ED23B392B2A0AFA00DAC8DD /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelLoader.h; path = ../../Model3D/ModelLoader.h; sourceTree = "<group>"; };
+		9ED23B3D2B2C2CFD00DAC8DD /* tiny_obj_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tiny_obj_loader.h; path = ../../Model3D/External/tiny_obj_loader.h; sourceTree = "<group>"; };
+		9ED23B3E2B2C9EC100DAC8DD /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../../testAssets/models; sourceTree = "<group>"; };
 		9ED90BD42337F7ED0004BAFA /* RenderSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderSettings.h; sourceTree = "<group>"; };
 		9EDC51622AE026620098F52D /* ImageResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageResource.h; sourceTree = "<group>"; };
 		9EDC51632AE026620098F52D /* DepthBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepthBuffer.h; sourceTree = "<group>"; };
@@ -710,9 +720,11 @@
 		9ED23B2F2B1ED1E000DAC8DD /* AddOns */ = {
 			isa = PBXGroup;
 			children = (
+				9ED23B352B2A0ACA00DAC8DD /* Model3D */,
 				9ECA39832202560E00B2A7B3 /* shaders */,
 				9ED23B302B1ED30A00DAC8DD /* meshObjects */,
 				9EDC51952AE4DEAA0098F52D /* textures */,
+				9ED23B3E2B2C9EC100DAC8DD /* models */,
 			);
 			name = AddOns;
 			sourceTree = "<group>";
@@ -723,6 +735,26 @@
 				9ED23B312B1ED35400DAC8DD /* Cube3DTextured.h */,
 			);
 			name = meshObjects;
+			sourceTree = "<group>";
+		};
+		9ED23B352B2A0ACA00DAC8DD /* Model3D */ = {
+			isa = PBXGroup;
+			children = (
+				9ED23B382B2A0AFA00DAC8DD /* ModelDefSpec.h */,
+				9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */,
+				9ED23B392B2A0AFA00DAC8DD /* ModelLoader.h */,
+				9ED23B372B2A0AFA00DAC8DD /* TestModel.h */,
+				9ED23B3C2B2C2CCC00DAC8DD /* External */,
+			);
+			name = Model3D;
+			sourceTree = "<group>";
+		};
+		9ED23B3C2B2C2CCC00DAC8DD /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9ED23B3D2B2C2CFD00DAC8DD /* tiny_obj_loader.h */,
+			);
+			name = External;
 			sourceTree = "<group>";
 		};
 		9EEBF70B226DF80A00AC0B7F /* Assist */ = {
@@ -892,6 +924,7 @@
 			files = (
 				9EDD14332AE9925300CBC7CE /* Images.xcassets in Resources */,
 				9EDC51A22AE633C60098F52D /* ubos+uvnorm=diffuv.vert in Resources */,
+				9ED23B402B2C9EC200DAC8DD /* models in Resources */,
 				9E29141A298818E90017E7CE /* vboMesh.vert in Resources */,
 				9EDC51972AE4DEAA0098F52D /* textures in Resources */,
 				9EDC51A02AE633C60098F52D /* textuv+intens.frag in Resources */,
@@ -909,6 +942,7 @@
 				9E6B2DE22332AF5300F7575D /* Images.xcassets in Resources */,
 				9E240CED2334ED46003D0269 /* LaunchScreen.storyboard in Resources */,
 				9EDC519F2AE633C60098F52D /* textuv+intens.frag in Resources */,
+				9ED23B3F2B2C9EC200DAC8DD /* models in Resources */,
 				9EDC51962AE4DEAA0098F52D /* textures in Resources */,
 				9EDC51A12AE633C60098F52D /* ubos+uvnorm=diffuv.vert in Resources */,
 				9ECA3982220255BE00B2A7B3 /* compiledShaders in Resources */,
@@ -969,6 +1003,7 @@
 				9E82E5C7220A345B00AC8F7D /* WindowSurface.cpp in Sources */,
 				9E87F5CC23217A210009062F /* TextureImage.cpp in Sources */,
 				9E38920C23297DCE0024D111 /* Descriptors.cpp in Sources */,
+				9ED23B3B2B2C2B0400DAC8DD /* ModelLoader.cpp in Sources */,
 				9E82E5C8220A345B00AC8F7D /* SyncObjects.cpp in Sources */,
 				9E61A5E224A8298800AF6133 /* AppSettings.cpp in Sources */,
 				9EF5A4E32314D26400524830 /* PrimitiveBuffer.cpp in Sources */,
@@ -1014,6 +1049,7 @@
 				9E4480602462DA13009A8EA4 /* FixedRenderable.cpp in Sources */,
 				9E82E5B22203B51700AC8F7D /* GraphicsDevice.cpp in Sources */,
 				9EA648352200C7E400FD3DB0 /* vkEnumStrings.cpp in Sources */,
+				9ED23B3A2B2A0AFA00DAC8DD /* ModelLoader.cpp in Sources */,
 				9E87F5CB23217A210009062F /* TextureImage.cpp in Sources */,
 				9E38920B232973490024D111 /* Descriptors.cpp in Sources */,
 				9EC4858B222DE445007C7242 /* PlatformCommon.cpp in Sources */,
