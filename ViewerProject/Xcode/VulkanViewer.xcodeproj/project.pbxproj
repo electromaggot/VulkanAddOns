@@ -349,13 +349,13 @@
 		9EC4858A222DE445007C7242 /* PlatformCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformCommon.cpp; sourceTree = "<group>"; };
 		9EC4858D2231A31F007C7242 /* PlatformExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformExtension.h; sourceTree = "<group>"; };
 		9ECA3981220255BE00B2A7B3 /* compiledShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = compiledShaders; sourceTree = "<group>"; };
-		9ED23B312B1ED35400DAC8DD /* Cube3DTextured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cube3DTextured.h; path = ../../testObjects/Cube3DTextured.h; sourceTree = "<group>"; };
-		9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelLoader.cpp; path = ../../Model3D/ModelLoader.cpp; sourceTree = "<group>"; };
-		9ED23B372B2A0AFA00DAC8DD /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestModel.h; path = ../../Model3D/TestModel.h; sourceTree = "<group>"; };
-		9ED23B382B2A0AFA00DAC8DD /* ModelDefSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelDefSpec.h; path = ../../Model3D/ModelDefSpec.h; sourceTree = "<group>"; };
-		9ED23B392B2A0AFA00DAC8DD /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelLoader.h; path = ../../Model3D/ModelLoader.h; sourceTree = "<group>"; };
-		9ED23B3D2B2C2CFD00DAC8DD /* tiny_obj_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tiny_obj_loader.h; path = ../../Model3D/External/tiny_obj_loader.h; sourceTree = "<group>"; };
-		9ED23B3E2B2C9EC100DAC8DD /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../../testAssets/models; sourceTree = "<group>"; };
+		9ED23B312B1ED35400DAC8DD /* Cube3DTextured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube3DTextured.h; sourceTree = "<group>"; };
+		9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelLoader.cpp; sourceTree = "<group>"; };
+		9ED23B372B2A0AFA00DAC8DD /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		9ED23B382B2A0AFA00DAC8DD /* ModelDefSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDefSpec.h; sourceTree = "<group>"; };
+		9ED23B392B2A0AFA00DAC8DD /* ModelLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoader.h; sourceTree = "<group>"; };
+		9ED23B3D2B2C2CFD00DAC8DD /* tiny_obj_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tiny_obj_loader.h; sourceTree = "<group>"; };
+		9ED23B3E2B2C9EC100DAC8DD /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = testAssets/models; sourceTree = "<group>"; };
 		9ED90BD42337F7ED0004BAFA /* RenderSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderSettings.h; sourceTree = "<group>"; };
 		9EDC51622AE026620098F52D /* ImageResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageResource.h; sourceTree = "<group>"; };
 		9EDC51632AE026620098F52D /* DepthBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepthBuffer.h; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 		9EDC51652AE026620098F52D /* ImageResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageResource.cpp; sourceTree = "<group>"; };
 		9EDC51732AE02ACA0098F52D /* VerticesDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticesDynamic.h; sourceTree = "<group>"; };
 		9EDC51782AE0336D0098F52D /* Vertex3DTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex3DTypes.h; sourceTree = "<group>"; };
-		9EDC51952AE4DEAA0098F52D /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = textures; path = ../../testAssets/textures; sourceTree = "<group>"; };
+		9EDC51952AE4DEAA0098F52D /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = textures; path = testAssets/textures; sourceTree = "<group>"; };
 		9EDC519D2AE633C50098F52D /* textuv+intens.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "textuv+intens.frag"; path = "../shaders/textuv+intens.frag"; sourceTree = "<group>"; };
 		9EDC519E2AE633C60098F52D /* ubos+uvnorm=diffuv.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "ubos+uvnorm=diffuv.vert"; path = "../shaders/ubos+uvnorm=diffuv.vert"; sourceTree = "<group>"; };
 		9EEA19152B03C47100EB47F4 /* DrawableSpecifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawableSpecifier.h; sourceTree = "<group>"; };
@@ -588,6 +588,7 @@
 			isa = PBXGroup;
 			children = (
 				9EA6482322003B2900FD3DB0 /* MainProgram */,
+				9ED23B412B2CEEC600DAC8DD /* Graphics */,
 				9ED23B2F2B1ED1E000DAC8DD /* AddOns */,
 				9E3FFC8A29AFFDC500AFAB72 /* gxEngine */,
 				9E2A277B2215308500B4FDBC /* Platform */,
@@ -713,28 +714,25 @@
 				9EA5CCFA231367E800178010 /* vboMesh.vert */,
 				9EA5CCF9231367E800178010 /* vboMesh.frag */,
 			);
-			name = shaders;
-			path = ../../shaders;
+			path = shaders;
 			sourceTree = "<group>";
 		};
 		9ED23B2F2B1ED1E000DAC8DD /* AddOns */ = {
 			isa = PBXGroup;
 			children = (
 				9ED23B352B2A0ACA00DAC8DD /* Model3D */,
-				9ECA39832202560E00B2A7B3 /* shaders */,
-				9ED23B302B1ED30A00DAC8DD /* meshObjects */,
-				9EDC51952AE4DEAA0098F52D /* textures */,
-				9ED23B3E2B2C9EC100DAC8DD /* models */,
 			);
 			name = AddOns;
+			path = ../..;
 			sourceTree = "<group>";
 		};
-		9ED23B302B1ED30A00DAC8DD /* meshObjects */ = {
+		9ED23B302B1ED30A00DAC8DD /* test3DObjects */ = {
 			isa = PBXGroup;
 			children = (
 				9ED23B312B1ED35400DAC8DD /* Cube3DTextured.h */,
 			);
-			name = meshObjects;
+			name = test3DObjects;
+			path = testObjects;
 			sourceTree = "<group>";
 		};
 		9ED23B352B2A0ACA00DAC8DD /* Model3D */ = {
@@ -746,7 +744,7 @@
 				9ED23B372B2A0AFA00DAC8DD /* TestModel.h */,
 				9ED23B3C2B2C2CCC00DAC8DD /* External */,
 			);
-			name = Model3D;
+			path = Model3D;
 			sourceTree = "<group>";
 		};
 		9ED23B3C2B2C2CCC00DAC8DD /* External */ = {
@@ -754,7 +752,19 @@
 			children = (
 				9ED23B3D2B2C2CFD00DAC8DD /* tiny_obj_loader.h */,
 			);
-			name = External;
+			path = External;
+			sourceTree = "<group>";
+		};
+		9ED23B412B2CEEC600DAC8DD /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				9ECA39832202560E00B2A7B3 /* shaders */,
+				9ED23B302B1ED30A00DAC8DD /* test3DObjects */,
+				9EDC51952AE4DEAA0098F52D /* textures */,
+				9ED23B3E2B2C9EC100DAC8DD /* models */,
+			);
+			name = Graphics;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		9EEBF70B226DF80A00AC0B7F /* Assist */ = {
