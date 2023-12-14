@@ -1,3 +1,6 @@
 [submodule "ViewerProject/src/VulkanModule"]
 	path = ViewerProject/src/VulkanModule
 	url = https://github.com/electromaggot/VulkanModule
+[submodule "Model3D/external/tiny_obj_loader.h"]
+	path = Model3D/external
+	url = https://github.com/tinyobjloader/tinyobjloader

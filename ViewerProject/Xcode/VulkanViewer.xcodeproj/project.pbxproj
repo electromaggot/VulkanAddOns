@@ -742,17 +742,17 @@
 				9ED23B362B2A0AFA00DAC8DD /* ModelLoader.cpp */,
 				9ED23B392B2A0AFA00DAC8DD /* ModelLoader.h */,
 				9ED23B372B2A0AFA00DAC8DD /* TestModel.h */,
-				9ED23B3C2B2C2CCC00DAC8DD /* External */,
+				9ED23B3C2B2C2CCC00DAC8DD /* external */,
 			);
 			path = Model3D;
 			sourceTree = "<group>";
 		};
-		9ED23B3C2B2C2CCC00DAC8DD /* External */ = {
+		9ED23B3C2B2C2CCC00DAC8DD /* external */ = {
 			isa = PBXGroup;
 			children = (
 				9ED23B3D2B2C2CFD00DAC8DD /* tiny_obj_loader.h */,
 			);
-			path = External;
+			path = external;
 			sourceTree = "<group>";
 		};
 		9ED23B412B2CEEC600DAC8DD /* Graphics */ = {
