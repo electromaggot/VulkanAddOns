@@ -27,7 +27,8 @@
 #include "gxCamera.h"
 #include "gxControlCameraLocked.h"
 
-#include "Cube3DTextured.h"
+//#include "Cube3DTextured.h"
+#include "TestModel.h"
 
 
 class Application
@@ -50,15 +51,15 @@ public:
 			gameClock(),
 			controlScheme(camera, gameClock)
 	{
-		pCube3D = nullptr;
+		pObject3D = nullptr;
 	}
 
 	~Application()			// Before destruction, in turn destroying child
 	{								//	data structures instanced above, ensure
 		vkDeviceWaitIdle(device);	//	Vulkan finish any operations in-process.
 
-		if (pCube3D)
-			delete pCube3D;
+		if (pObject3D)
+			delete pObject3D;
 	}
 
 		// lesser MEMBERS
@@ -73,7 +74,7 @@ private:
 	VkExtent2D&		swapchainExtent;
 
 	// Implementation
-	RenderableCube* pCube3D;
+	DrawableObject* pObject3D;
 
 	gxGameClock		gameClock;
 	gxCamera			camera;

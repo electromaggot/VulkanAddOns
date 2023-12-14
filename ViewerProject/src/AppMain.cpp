@@ -20,8 +20,8 @@ void Application::Init()
 {
 	Renderables& renderables = vulkan.command.renderables;
 
-	pCube3D = new RenderableCube(camera.uboMVP);
-	renderables.Add(FixedRenderable(*pCube3D, vulkan, platform));
+	pObject3D = new DrawableObject(camera.uboMVP);
+	renderables.Add(FixedRenderable(*pObject3D, vulkan, platform));
 
 	vulkan.command.PostInitPrepBuffers(vulkan);
 
