@@ -42,25 +42,21 @@ set(EXECUTABLE_OUTPUT_PATH build)			# sub-directory destination for built binary
 AUX_SOURCE_DIRECTORY("src/" Platform__Linux)
 
 AUX_SOURCE_DIRECTORY("../src/" VulkanViewer)
-
 AUX_SOURCE_DIRECTORY("../src/Settings/" VulkanViewer__Settings)
 
 AUX_SOURCE_DIRECTORY("../../shaders/" Graphics__Shaders)
-
 AUX_SOURCE_DIRECTORY("../../testObjects/" Graphics__MeshObjects)
 
-AUX_SOURCE_DIRECTORY("../../gxEngine/" GraphicsEngine)
+AUX_SOURCE_DIRECTORY("../../Model3D/" Model3D)
+AUX_SOURCE_DIRECTORY("../../Model3D/External" Model3D__External)
 
+AUX_SOURCE_DIRECTORY("../../gxEngine/" GraphicsEngine)
 AUX_SOURCE_DIRECTORY("../../gxEngine/ControlSchemes" GraphicsEngine__ControlSchemes)
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/" Platform)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/FileSystem/" Platform__FileSystem)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/GUISystem/stubs/" Platform__GUISystem)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ImageHandling/" Platform__ImageHandling)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/Logger/" Platform__Logger)
 
 set(Platform__OSAbstraction
@@ -91,6 +87,8 @@ set(ALL_FILES
     ${VulkanViewer__Settings}
     ${Graphics__Shaders}
     ${Graphics__MeshObjects}
+    ${Model3D}
+    ${Model3D__External}
     ${GraphicsEngine}
     ${GraphicsEngine__ControlSchemes}
     ${Platform}
@@ -147,6 +145,8 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Include directories
         "${CMAKE_CURRENT_SOURCE_DIR}/../src;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../src/Settings;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../testObjects;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../Model3D;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../Model3D/External;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../gxEngine;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../gxEngine/ControlSchemes;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule;"
@@ -189,6 +189,7 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Post build events
         COMMAND if [ ! -d "build" ]\; then mkdir build\; fi
         COMMAND if [ ! -d "build/compiledShaders" ]\; then mkdir "build/compiledShaders" \; cd "../../shaders" \; ./compileLinux.sh\; fi
         COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../../testAssets/textures" \; fi
+        COMMAND if [ ! -L "build/models" ]\; then cd build\; ln -s "../../../testAssets/models" \; fi
         COMMENT "Post-build events complete."
     )
 endif()
