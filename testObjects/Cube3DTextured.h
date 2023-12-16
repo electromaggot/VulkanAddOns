@@ -101,7 +101,7 @@ public:															// cube, vertex + normal buffer
 	{															//								 │
 		name	=	"BoomBox";									//								 │
 		shaders	= { { VERTEX,	"ubos+uvnorm=diffuv-vert.spv"},	// This shader expects... ───────┤
-					{ FRAGMENT, "textuv+intens-frag.spv" } };	//								 │
+					{ FRAGMENT, "textuv2+intens-frag.spv" } };	//								 │
 		pUBOs = { refMVP, uboMatrix };							//  ...these uniform buffers, <──╯
 		textures = { { "C4Crate.png" } };						//  ...and textures too (as an
 	}															//	   array, here with default properties).
