@@ -42,25 +42,21 @@ set(EXECUTABLE_OUTPUT_PATH build)			# sub-directory destination for built binary
 AUX_SOURCE_DIRECTORY("src/" Platform__Linux)
 
 AUX_SOURCE_DIRECTORY("../src/" VulkanViewer)
-
 AUX_SOURCE_DIRECTORY("../src/Settings/" VulkanViewer__Settings)
 
 AUX_SOURCE_DIRECTORY("../../shaders/" Graphics__Shaders)
-
 AUX_SOURCE_DIRECTORY("../../testObjects/" Graphics__MeshObjects)
 
-AUX_SOURCE_DIRECTORY("../../gxEngine/" GraphicsEngine)
+AUX_SOURCE_DIRECTORY("../../Model3D/" Model3D)
+AUX_SOURCE_DIRECTORY("../../Model3D/External" Model3D__External)
 
+AUX_SOURCE_DIRECTORY("../../gxEngine/" GraphicsEngine)
 AUX_SOURCE_DIRECTORY("../../gxEngine/ControlSchemes" GraphicsEngine__ControlSchemes)
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/" Platform)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/FileSystem/" Platform__FileSystem)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/GUISystem/stubs/" Platform__GUISystem)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ImageHandling/" Platform__ImageHandling)
-
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/Logger/" Platform__Logger)
 
 set(Platform__OSAbstraction
@@ -91,6 +87,8 @@ set(ALL_FILES
     ${VulkanViewer__Settings}
     ${Graphics__Shaders}
     ${Graphics__MeshObjects}
+    ${Model3D}
+    ${Model3D_External}
     ${GraphicsEngine}
     ${GraphicsEngine__ControlSchemes}
     ${Platform}
@@ -138,15 +136,17 @@ endif()
 
 if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Include directories
     target_include_directories(${PROJECT_NAME} PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/VulkanSDK/Include;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/VulkanSDK/Third-Party/Include;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/VulkanSDK/Include;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/VulkanSDK/Third-Party/Include;"
         "/usr/include/SDL2;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/SDL2/include;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/SDL2_image/include;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/SDL2/include;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/SDL2_image/include;"
         "${CMAKE_CURRENT_SOURCE_DIR}/src;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../src;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../src/Settings;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../testObjects;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../Model3D;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../Model3D/External;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../gxEngine;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../gxEngine/ControlSchemes;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule;"
@@ -164,8 +164,8 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Include directories
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/GUISystem;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/GUISystem/stubs;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../../VulkanModule/Platform/ControlScheme;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/imgui;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/imgui/examples;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/imgui;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/imgui/examples;"
     )
 endif()
 
@@ -218,10 +218,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DEPENDENCIES
 
 if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")
     target_link_directories(${PROJECT_NAME} PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/VulkanSDK/Lib;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/VulkanSDK/Third-Party/Bin;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/SDL2/lib/${CMAKE_PLATFORM_NAME};"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../External/SDL2_image/lib/${CMAKE_PLATFORM_NAME}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/VulkanSDK/Lib;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/VulkanSDK/Third-Party/Bin;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/SDL2/lib/${CMAKE_PLATFORM_NAME};"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../external/SDL2_image/lib/${CMAKE_PLATFORM_NAME}"
     )
 endif()
 
