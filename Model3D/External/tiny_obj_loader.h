@@ -3,8 +3,8 @@
 //
 // Only if you don't need 'model.obj' loading.  But if you do, replace this file with:
 //
-//	$ wget https://raw.githubusercontent.com/tinyobjloader/tinyobjloader/release/tiny_obj_loader.h
-//
+//	$ wget -O https://raw.githubusercontent.com/tinyobjloader/tinyobjloader/release/tiny_obj_loader.h
+//         (^ that's a capital-Oh)
 // from `https://github.com/tinyobjloader/tinyobjloader.git`
 //
 
