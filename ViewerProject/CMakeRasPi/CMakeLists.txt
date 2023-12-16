@@ -189,6 +189,7 @@ if("${CMAKE_PLATFORM_NAME}" STREQUAL "x64")		# Post build events
         COMMAND if [ ! -d "build" ]\; then mkdir build\; fi
         COMMAND if [ ! -L "build/compiledShaders" ]\; then cd build\; ln -s "../../CMakeLinux/build/compiledShaders" \; cd "../../../shaders" \; ./compileLinux.sh\; fi
         COMMAND if [ ! -L "build/textures" ]\; then cd build\; ln -s "../../../testAssets/textures" \; fi
+        COMMAND if [ ! -L "build/models" ]\; then cd build\; ln -s "../../../testAssets/models" \; fi
         COMMENT "Post-build events complete."
     )
 endif()
