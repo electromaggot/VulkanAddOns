@@ -4,4 +4,4 @@ wget -O https://raw.githubusercontent.com/tinyobjloader/tinyobjloader/release/ti
 ```
 or clone `https://github.com/tinyobjloader/tinyobjloader.git`
 
-*(above, that* `-O` *is a Capital-Oh)*
+*(above, that* `-O` *is a capital-Oh)*
