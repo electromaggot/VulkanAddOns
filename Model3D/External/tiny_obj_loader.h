@@ -32,8 +32,8 @@ public:
 
 	static bool LoadObj(attrib_t* a, vector<shape_t>* s, vector<material_t>* m,
 						string* w, string* e, const char* c) {
-		*e = "The 'Model.OBJ' loader is stubbed-out. Please see 'tiny_obj_loader.h' and download the real one!";
-		*w = "So you won't see the model actually display."
+		*e = "The 'Model.OBJ' Loader is stubbed-out. Please see 'tiny_obj_loader.h' and download the real one!";
+		*w = "Thus you won't see the model actually display.";
 		return false;
 	};
 }; 
