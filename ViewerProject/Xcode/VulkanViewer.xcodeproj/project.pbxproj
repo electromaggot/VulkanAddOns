@@ -363,6 +363,8 @@
 		9EDC51652AE026620098F52D /* ImageResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageResource.cpp; sourceTree = "<group>"; };
 		9EDC51732AE02ACA0098F52D /* VerticesDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticesDynamic.h; sourceTree = "<group>"; };
 		9EDC51782AE0336D0098F52D /* Vertex3DTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vertex3DTypes.h; sourceTree = "<group>"; };
+		9EDC51827AE720230098F52D /* VertexDescription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VertexDescription.h; sourceTree = "<group>"; };
+		9EDC51827AE820230098F52D /* VertexAttribute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VertexAttribute.h; sourceTree = "<group>"; };
 		9EDC51952AE4DEAA0098F52D /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = textures; path = testAssets/textures; sourceTree = "<group>"; };
 		9EDC519D2AE633C50098F52D /* textuv+intens.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "textuv+intens.frag"; path = "../shaders/textuv+intens.frag"; sourceTree = "<group>"; };
 		9EDC519E2AE633C60098F52D /* ubos+uvnorm=diffuv.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = "ubos+uvnorm=diffuv.vert"; path = "../shaders/ubos+uvnorm=diffuv.vert"; sourceTree = "<group>"; };
@@ -841,6 +843,8 @@
 				9EDC51782AE0336D0098F52D /* Vertex3DTypes.h */,
 				9E2DAE05232A86E2004ADDCB /* Vertex2DTypes.h */,
 				9EDC51732AE02ACA0098F52D /* VerticesDynamic.h */,
+				9EDC51827AE720230098F52D /* VertexDescription.h */,
+				9EDC51827AE820230098F52D /* VertexAttribute.h */,
 				9EF5A4E52315C01100524830 /* VertexAbstract.h */,
 				9EF5A4E7231998D800524830 /* VertexNull.h */,
 			);
