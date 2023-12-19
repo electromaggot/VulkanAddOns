@@ -86,18 +86,20 @@ void Application::update()
 }
 
 
+const uint64_t NO_TIMEOUT = numeric_limits<uint64_t>::max();
+const uint64_t FAILSAFE_TIMEOUT = 100'000'000;				// 1/10th second in nanoseconds
+
+
 // Render all in-game elements.
 //
 void Application::draw()
 {
-	const uint64_t NO_TIMEOUT = numeric_limits<uint64_t>::max();
-	const uint64_t FAILSAFE_TIMEOUT = 100'000'000;				// 1/10th second in nanoseconds
 	uint32_t iNextImage;
 
 	// Await prior submission's finish...						(and to never risk deadlock ↓ )
 	vkWaitForFences(device, 1, &syncObjects.inFlightFences[iCurrentFrame], VK_TRUE, FAILSAFE_TIMEOUT);
 
-	call = vkAcquireNextImageKHR(device, swapchain, NO_TIMEOUT,
+	call = vkAcquireNextImageKHR(device, swapchain, FAILSAFE_TIMEOUT,
 								 syncObjects.imageAvailableSemaphores[iCurrentFrame],
 								 VK_NULL_HANDLE, &iNextImage);
 	const char* called = "Acquire Next Image";
