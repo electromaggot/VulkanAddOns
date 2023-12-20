@@ -167,7 +167,7 @@ void Application::draw()
 			vulkan.RecreateRenderingResources();
 	}
 	if (call != VK_SUCCESS && call != VK_RESULT_MAX_ENUM)
-		Log(ERROR, called + " - " + ErrStr(call));
+		Log(ERROR, called + string(" - ") + ErrStr(call));
 
 	iCurrentFrame = (iCurrentFrame + 1) % syncObjects.MaxFramesInFlight;
 }
