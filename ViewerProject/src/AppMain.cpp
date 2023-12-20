@@ -106,7 +106,8 @@ void Application::draw()
 	const char* called = "Acquire Next Image";
 
 	if (platform.IsWindowResized())
-		call = VK_RESULT_MAX_ENUM;
+		call = VK_RESULT_MAX_ENUM;	// detect resize as non-error (won't log) but skip next frame
+
 	if (call == VK_RESULT_MAX_ENUM || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
 	{
 		vulkan.RecreateRenderingResources();
