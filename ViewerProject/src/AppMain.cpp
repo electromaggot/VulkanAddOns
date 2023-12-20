@@ -94,6 +94,7 @@ const uint64_t FAILSAFE_TIMEOUT = 100'000'000;				// 1/10th second in nanosecond
 //
 void Application::draw()
 {
+	VkResult call;			// local instance (the global one, while convenient, isn't thread-safe)
 	uint32_t iNextImage;
 
 	// Await prior submission's finish...						(and to never risk deadlock ↓ )
@@ -104,8 +105,13 @@ void Application::draw()
 								 VK_NULL_HANDLE, &iNextImage);
 	const char* called = "Acquire Next Image";
 
-	if (platform.IsWindowResized() || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
+	if (platform.IsWindowResized())
+		call = VK_RESULT_MAX_ENUM;
+	if (call == VK_RESULT_MAX_ENUM || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
+	{
 		vulkan.RecreateRenderingResources();
+		syncObjects.Recreate();
+	}
 
 	//	...then restore Fence back to unsignaled state.
 	vkResetFences(device, 1, &syncObjects.inFlightFences[iCurrentFrame]);
@@ -160,8 +166,8 @@ void Application::draw()
 		if (platform.IsWindowResized() || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
 			vulkan.RecreateRenderingResources();
 	}
-	if (call != VK_SUCCESS)
-		Log(ERROR, called + ErrStr(call));
+	if (call != VK_SUCCESS && call != VK_RESULT_MAX_ENUM)
+		Log(ERROR, called + " - " + ErrStr(call));
 
 	iCurrentFrame = (iCurrentFrame + 1) % syncObjects.MaxFramesInFlight;
 }
