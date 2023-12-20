@@ -163,8 +163,8 @@ void Application::draw()
 			call = vkQueuePresentKHR(deviceQueue, &presentInfo);
 			called = "Queue Present";
 		}
-		if (platform.IsWindowResized() || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
-			vulkan.RecreateRenderingResources();
+		//if (platform.IsWindowResized() || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
+		//	vulkan.RecreateRenderingResources();	//TODO: eliminate this commented-out code if proven unnecessary
 	}
 	if (call != VK_SUCCESS && call != VK_RESULT_MAX_ENUM)
 		Log(ERROR, called + string(" - ") + ErrStr(call));
