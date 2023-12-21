@@ -32,9 +32,9 @@ namespace std {
 }
 
 
-ModelLoader::ModelLoader(MeshObject& mesh, string nameOBJFile)
+void ModelLoader::load(MeshObject& mesh, string nameOBJFile)
 {
-	AttributeBits attribits = loadModel(nameOBJFile);
+	AttributeBits attribits = loadTinyObj(nameOBJFile);
 
 	mesh.vertexType.initialize(attribits);
 
@@ -44,8 +44,21 @@ ModelLoader::ModelLoader(MeshObject& mesh, string nameOBJFile)
 	mesh.indexCount	 = (uint32_t) indices.size();
 }
 
+MeshIndexType ModelLoader::indexType()
+{
+	return indexTypeTinyObj();
+}
 
-AttributeBits ModelLoader::loadModel(string nameOBJFile)
+
+// LOADER-IMPLEMENTATION-SPECIFIC (currently only supported: tiny_obj_loader)
+
+
+MeshIndexType ModelLoader::indexTypeTinyObj()
+{
+	return MESH_LARGE_INDEX;	// tiny_obj_loader always returns 32-bit indices
+}
+
+AttributeBits ModelLoader::loadTinyObj(string nameOBJFile)
 {
 	tinyobj::attrib_t tiny;
 	vector<tinyobj::shape_t> shapes;

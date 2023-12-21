@@ -24,9 +24,13 @@ class ModelLoader
 	FileSystem		 fileSystem;
 
 public:
-	ModelLoader(MeshObject& mesh, string nameOBJFile);
+	void load(MeshObject& mesh, string nameOBJFile);
+	MeshIndexType indexType();
 
-	AttributeBits loadModel(string nameOBJFile);
+	// LOADER-IMPLEMENTATION-SPECIFIC (currently only supported: tiny_obj_loader)
+
+	AttributeBits loadTinyObj(string nameOBJFile);
+	MeshIndexType indexTypeTinyObj();
 };
 
 #endif	// ModelLoader_h
