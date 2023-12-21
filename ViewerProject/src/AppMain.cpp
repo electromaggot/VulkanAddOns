@@ -86,15 +86,10 @@ void Application::update()
 }
 
 
-const uint64_t NO_TIMEOUT = numeric_limits<uint64_t>::max();
-const uint64_t FAILSAFE_TIMEOUT = 100'000'000;				// 1/10th second in nanoseconds
-
-
 // Render all in-game elements.
 //
 void Application::draw()
 {
-	VkResult call;			// local instance (the global one, while convenient, isn't thread-safe)
 	uint32_t iNextImage;
 
 	// Await prior submission's finish...						(and to never risk deadlock ↓ )
@@ -105,10 +100,7 @@ void Application::draw()
 								 VK_NULL_HANDLE, &iNextImage);
 	const char* called = "Acquire Next Image";
 
-	if (platform.IsWindowResized())
-		call = VK_RESULT_MAX_ENUM;	// detect resize as non-error (won't log) but skip next frame
-
-	if (call == VK_RESULT_MAX_ENUM || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
+	if ((call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR) && priorCall == VK_SUCCESS)
 	{
 		vulkan.RecreateRenderingResources();
 		syncObjects.Recreate();
@@ -164,11 +156,10 @@ void Application::draw()
 			call = vkQueuePresentKHR(deviceQueue, &presentInfo);
 			called = "Queue Present";
 		}
-		//if (platform.IsWindowResized() || call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
-		//	vulkan.RecreateRenderingResources();	//TODO: eliminate this commented-out code if proven unnecessary
 	}
-	if (call != VK_SUCCESS && call != VK_RESULT_MAX_ENUM)
-		Log(ERROR, called + string(" - ") + ErrStr(call));
+	if (call != VK_SUCCESS && call != VK_SUBOPTIMAL_KHR)
+		Log(ERROR, called + ErrStr(call));
+	priorCall = call;
 
 	iCurrentFrame = (iCurrentFrame + 1) % syncObjects.MaxFramesInFlight;
 }

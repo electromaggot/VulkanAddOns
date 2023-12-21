@@ -80,6 +80,12 @@ private:
 	gxCamera			camera;
 	gxControlCameraLocked	controlScheme;
 
+	// Draw-loop-related detail
+	const uint64_t NO_TIMEOUT = numeric_limits<uint64_t>::max();
+	const uint64_t FAILSAFE_TIMEOUT = 100'000'000;				// 1/10th second in nanoseconds
+	VkResult priorCall;
+	VkResult call;			// local instance (the global one, while convenient, isn't thread-safe)
+
 		// METHODS
 public:
 	void Run();
