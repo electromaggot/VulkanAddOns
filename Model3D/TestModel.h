@@ -22,14 +22,15 @@ class DrawableObject : public DrawableSpecifier {
 
 	VertexDescriptionDynamic vertexDescriptor;
 	MeshObject object3D = { vertexDescriptor };
+	ModelLoader model;
 
 public:
 	DrawableObject(UBO& refMVP)
 		:	DrawableSpecifier(object3D)
 	{
 		name	=	"viking_room.obj";			// object's "name" can arbitrarily be same as its filename
-		ModelLoader load(mesh, name);
-		object3D.indexType = MESH_LARGE_INDEX;	// temporary, tiny_obj_loader always returns 32-bit indices
+		model.load(mesh, name);
+		object3D.indexType = model.indexType();
 
 		shaders = { { VERTEX,	"uv,mvp+norm=diffuv-vert.spv"},
 					{ FRAGMENT, "textuv+intens-frag.spv" } };
