@@ -100,12 +100,6 @@ void Application::draw()
 								 VK_NULL_HANDLE, &iNextImage);
 	const char* called = "Acquire Next Image";
 
-	if ((call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR) && priorCall == VK_SUCCESS)
-	{
-		vulkan.RecreateRenderingResources();
-		syncObjects.Recreate();
-	}
-
 	//	...then restore Fence back to unsignaled state.
 	vkResetFences(device, 1, &syncObjects.inFlightFences[iCurrentFrame]);
 
@@ -157,8 +151,15 @@ void Application::draw()
 			called = "Queue Present";
 		}
 	}
-	if (call != VK_SUCCESS && call != VK_SUBOPTIMAL_KHR)
-		Log(ERROR, called + ErrStr(call));
+	if (call != VK_SUCCESS) {
+		if ((call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR) && priorCall == VK_SUCCESS)
+		{
+			vulkan.RecreateRenderingResources();
+			syncObjects.Recreate();
+		}
+		if (call != VK_SUBOPTIMAL_KHR)
+			Log(ERROR, called + ErrStr(call));
+	}
 	priorCall = call;
 
 	iCurrentFrame = (iCurrentFrame + 1) % syncObjects.MaxFramesInFlight;
