@@ -81,8 +81,10 @@ private:
 	gxControlCameraLocked	controlScheme;
 
 	// Draw-loop-related detail
-	const uint64_t NO_TIMEOUT = numeric_limits<uint64_t>::max();
-	const uint64_t FAILSAFE_TIMEOUT = 100'000'000;				// 1/10th second in nanoseconds
+	typedef uint64_t NanosecondTimeout;
+	const NanosecondTimeout NO_TIMEOUT = numeric_limits<uint64_t>::max();
+	const NanosecondTimeout FAILSAFE_1_10TH_SECOND = 100'000'000;
+	const NanosecondTimeout EXHAUST_1_FULL_SECOND = 1'000'000'000;	// (fyi, dev note at bottom)
 	VkResult priorCall;
 	VkResult call;			// local instance (the global one, while convenient, isn't thread-safe)
 
@@ -101,3 +103,11 @@ private:
 
 	static void ForceUpdateRender(void* pOurself);
 };
+
+
+
+/* DEV NOTE regarding "exhaustive" timeout, particularly when applied to vkAcquireNextImageKHR:
+	This isn't so much a "magic number" as it assumes the same value as Apple's Metal backend,
+	as their docs for [CAMetalLayer nextDrawable] state: "If all drawables are in use, the
+	layer waits up to one second for one to become available, after which it returns nil."
+*/

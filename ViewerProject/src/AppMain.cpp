@@ -93,9 +93,9 @@ void Application::draw()
 	uint32_t iNextImage;
 
 	// Await prior submission's finish...						(and to never risk deadlock ↓ )
-	vkWaitForFences(device, 1, &syncObjects.inFlightFences[iCurrentFrame], VK_TRUE, FAILSAFE_TIMEOUT);
+	vkWaitForFences(device, 1, &syncObjects.inFlightFences[iCurrentFrame], VK_TRUE, FAILSAFE_1_10TH_SECOND);
 
-	call = vkAcquireNextImageKHR(device, swapchain, FAILSAFE_TIMEOUT,
+	call = vkAcquireNextImageKHR(device, swapchain, EXHAUST_1_FULL_SECOND,
 								 syncObjects.imageAvailableSemaphores[iCurrentFrame],
 								 VK_NULL_HANDLE, &iNextImage);
 	const char* called = "Acquire Next Image";
