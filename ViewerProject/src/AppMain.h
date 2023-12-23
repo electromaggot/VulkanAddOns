@@ -85,8 +85,7 @@ private:
 	const NanosecondTimeout NO_TIMEOUT = numeric_limits<uint64_t>::max();
 	const NanosecondTimeout FAILSAFE_1_10TH_SECOND = 100'000'000;
 	const NanosecondTimeout EXHAUST_1_FULL_SECOND = 1'000'000'000;	// (fyi, dev note at bottom)
-	VkResult priorCall;
-	VkResult call;			// local instance (the global one, while convenient, isn't thread-safe)
+	VkResult call;		// local instance (the global one, while convenient, isn't thread-safe)
 
 		// METHODS
 public:

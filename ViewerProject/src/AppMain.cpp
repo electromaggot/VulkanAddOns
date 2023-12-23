@@ -90,6 +90,7 @@ void Application::update()
 //
 void Application::draw()
 {
+	VkResult call;			// (local instance of this. the global one is convenient but non-thread-safe!)
 	uint32_t iNextImage;
 
 	// Await prior submission's finish...						(and to never risk deadlock ↓ )
@@ -151,16 +152,13 @@ void Application::draw()
 			called = "Queue Present";
 		}
 	}
-	if (call != VK_SUCCESS) {
-		if ((call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR) && priorCall == VK_SUCCESS)
-		{
-			vulkan.RecreateRenderingResources();
-			syncObjects.Recreate();
-		}
-		if (call != VK_SUBOPTIMAL_KHR)
-			Log(ERROR, called + ErrStr(call));
+	if (call == VK_ERROR_OUT_OF_DATE_KHR || call == VK_SUBOPTIMAL_KHR)
+	{
+		vulkan.RecreateRenderingResources();
+		syncObjects.Recreate();
 	}
-	priorCall = call;
+	if (call != VK_SUCCESS && call != VK_SUBOPTIMAL_KHR)
+		Log(ERROR, called + ErrStr(call));
 
 	iCurrentFrame = (iCurrentFrame + 1) % syncObjects.MaxFramesInFlight;
 }
