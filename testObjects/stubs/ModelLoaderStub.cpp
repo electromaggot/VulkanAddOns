@@ -10,7 +10,7 @@
 #include "ModelLoader.h"
 
 
-AttributeBits ModelLoader::loadModel(string nameOBJFile)
+AttributeBits ModelLoader::load(string nameOBJFile)
 {
 	return 0;
 }
