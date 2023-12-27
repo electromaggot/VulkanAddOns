@@ -8,7 +8,7 @@ Adds graphical elements to [VulkanModule](https://github.com/electromaggot/Vulka
 - Graphics Objects
    - 3D test objects, flexible and reusable, but some also self-contained using entirely pre-initialized data.<br>
      For instance: test quads (sprite/billboard), test cubes, geometric primitives, shapes like Utah teapot, etc.
-   - coordinated shaders/assets.
+   - coordinated shaders and test assets.
    - 3D Models (loadable from OBJ files, firstly).
    - 3D Fonts (generated from TrueType/OpenType files) [coming soon].
 - gxEngine &ndash; components of a game/graphics engine.
