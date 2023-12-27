@@ -90,7 +90,6 @@ void Application::update()
 //
 void Application::draw()
 {
-	VkResult call;			// (local instance of this. the global one is convenient but non-thread-safe!)
 	uint32_t iNextImage;
 
 	// Await prior submission's finish...						(and to never risk deadlock ↓ )
