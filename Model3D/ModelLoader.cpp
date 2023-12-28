@@ -92,26 +92,41 @@ AttributeBits ModelLoader::loadTinyObj(string nameOBJFile)
 
 			if (! tiny.vertices.empty()) {
 				int iVec3 = 3 * index.vertex_index;
-				vertex.position = { tiny.vertices[iVec3 + 0], tiny.vertices[iVec3 + 1], tiny.vertices[iVec3 + 2] };
-			}
-			// else { should indicate error }
+				if (iVec3 < tiny.vertices.size())
+					vertex.position = { tiny.vertices[iVec3 + 0], tiny.vertices[iVec3 + 1], tiny.vertices[iVec3 + 2] };
+				else if (iVec3 == tiny.vertices.size())
+					Log(ERROR, "TinyObj.vertices exceed %d! Model '%s' truncated.\n", iVec3, nameOBJFile.c_str());
+			} else
+				Log(ERROR, "Model '%s' contains no vertex data (may be corrupt) so won't appear.\n");
 
 			if (! tiny.normals.empty()) {
 				int iVec3 = 3 * index.normal_index;
-				vertex.normal = { tiny.normals[iVec3 + 0], tiny.normals[iVec3 + 1], tiny.normals[iVec3 + 2] };
+				if (iVec3 < tiny.normals.size())
+					vertex.normal = { tiny.normals[iVec3 + 0], tiny.normals[iVec3 + 1], tiny.normals[iVec3 + 2] };
+				else if (iVec3 == tiny.normals.size())
+					Log(ERROR, "TinyObj.normals exceed %d! Model '%s' truncated.\n", iVec3, nameOBJFile.c_str());
 			}
 
 			if (! tiny.texcoords.empty()) {
 				int iVec2 = 2 * index.texcoord_index;
-				vertex.texCoord = { tiny.texcoords[iVec2 + 0], tiny.texcoords[iVec2 + 1] };
+				if (iVec2 < tiny.texcoords.size())
+					vertex.texCoord = { tiny.texcoords[iVec2 + 0], tiny.texcoords[iVec2 + 1] };
+				else if (iVec2 == tiny.texcoords.size())
+					Log(ERROR, "TinyObj.texcoords exceed %d! Model '%s' truncated.\n", iVec2, nameOBJFile.c_str());
 			}
 
-			if (! tiny.colors.empty()) {
-				int iVec4 = 4 * index.vertex_index;
-				vertex.color = { tiny.colors[iVec4 + 0], tiny.colors[iVec4 + 1], tiny.colors[iVec4 + 2], 1.0f };
-			}
-			else
+			if (! tiny.colors.empty()) {	// Keep in mind that while our vertex.color is a 'Vec4', tiny.colors are 'Vec3's!
+				int iVec3 = 3 * index.vertex_index;
+				if (iVec3 < tiny.colors.size())
+					vertex.color = { tiny.colors[iVec3 + 0], tiny.colors[iVec3 + 1], tiny.colors[iVec3 + 2], 1.0f };
+				else {
+					if (iVec3 == tiny.colors.size())
+						Log(ERROR, "TinyObj.color %d exceeded colors array %lu! Rest default to white...\n", iVec3);
+					goto otherwise_white;
+				}
+			} else { otherwise_white:
 				vertex.color = { 1.0f, 1.0f, 1.0f, 1.0f };
+			}
 
 			if (uniqueVertices.count(vertex) == 0) {
 				uniqueVertices[vertex] = static_cast<uint32_t>(vertices.count());
