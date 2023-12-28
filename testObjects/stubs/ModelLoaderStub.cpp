@@ -10,7 +10,4 @@
 #include "ModelLoader.h"
 
 
-AttributeBits ModelLoader::load(string nameOBJFile)
-{
-	return 0;
-}
+void ModelLoader::load(MeshObject& mesh, string nameOBJFile)  { }
