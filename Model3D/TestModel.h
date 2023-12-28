@@ -18,14 +18,14 @@
 #include "ModelLoader.h"
 
 
-class DrawableObject : public DrawableSpecifier {
+class RenderableTestModel : public DrawableSpecifier {
 
 	VertexDescriptionDynamic vertexDescriptor;
 	MeshObject object3D = { vertexDescriptor };
 	ModelLoader model;
 
 public:
-	DrawableObject(UBO& refMVP)
+	RenderableTestModel(UBO& refMVP)
 		:	DrawableSpecifier(object3D)
 	{
 		name	=	"viking_room.obj";			// object's "name" can arbitrarily be same as its filename

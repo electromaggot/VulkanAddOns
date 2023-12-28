@@ -89,13 +89,13 @@ const Vertex3DNormalTexture CubeVertices[] = {	// (Purposely not rendering back-
 //	to share this object between other shaders or share shaders between similar objects.
 //	In that case, consider the below a usage example that the compiler will thus ignore.
 //
-class DrawableObject : public DrawableSpecifier, public gxMatrix
+class RenderableCubeTextured : public DrawableSpecifier, public gxMatrix
 {
 	VertexDescription<Vertex3DNormalTexture> vertexDescriptor;
 	MeshObject cube3DObject = { vertexDescriptor, (void*) CubeVertices, N_ELEMENTS_IN_ARRAY(CubeVertices) };
 	UBO uboMatrix;
 public:															// cube, vertex + normal buffer
-	DrawableObject(UBO& refMVP)									//			+ texture sampler
+	RenderableCubeTextured(UBO& refMVP)							//			+ texture sampler
 		:	DrawableSpecifier(cube3DObject),					// ...this vertex buffer and  <──╮
 			uboMatrix(matrix)									//								 │
 	{															//								 │

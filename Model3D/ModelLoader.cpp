@@ -34,6 +34,9 @@ namespace std {
 
 void ModelLoader::load(MeshObject& mesh, string nameOBJFile)
 {
+	vertices.clear();
+	indices.clear();
+
 	AttributeBits attribits = loadTinyObj(nameOBJFile);
 
 	mesh.vertexType.initialize(attribits);

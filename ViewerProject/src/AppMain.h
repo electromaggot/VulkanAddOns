@@ -23,12 +23,10 @@
 #include "AppSettings.h"
 #include "PlatformSDL.h"
 #include "VulkanSetup.h"
+#include "DrawableSpecifier.h"
 #include "gxGameClock.h"
 #include "gxCamera.h"
 #include "gxControlCameraLocked.h"
-
-//#include "Cube3DTextured.h"
-#include "TestModel.h"
 
 
 class Application
@@ -74,9 +72,10 @@ private:
 	VkExtent2D&		swapchainExtent;
 
 	// Implementation
-	DrawableObject* pObject3D;
+	DrawableSpecifier*	pObject3D;
+	int					iNextObject = 0;
 
-	gxGameClock		gameClock;
+	gxGameClock			gameClock;
 	gxCamera			camera;
 	gxControlCameraLocked	controlScheme;
 
@@ -94,6 +93,7 @@ public:
 	void DialogBox(const char* message) { platform.DialogBox(message); }
 private:
 	void initPersistentValues();
+	void instantiateGraphicsObject();
 	void updateGameElements(float deltaSeconds);
 
 	void updateRender();

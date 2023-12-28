@@ -12,22 +12,46 @@
 #include "MeshObject.h"
 #include "UniformBufferLiterals.h"
 
+#include "Cube3DTextured.h"
+#include "TestModel.h"
+
 
 // This "Post-construction Initialization" runs after VulkanSetup's initializer list instantiates/initializes
 //  nearly all of the Vulkan objects.  Now instruct it how to finish, specifying app-specific customizations.
 //
 void Application::Init()
 {
-	Renderables& renderables = vulkan.command.renderables;
-
-	pObject3D = new DrawableObject(camera.uboMVP);
-	renderables.Add(FixedRenderable(*pObject3D, vulkan, platform));
-
-	vulkan.command.PostInitPrepBuffers(vulkan);
-
 	initPersistentValues();
 
 	platform.RegisterForceRenderCallback(Application::ForceUpdateRender, this);
+
+	instantiateGraphicsObject();
+}
+
+void Application::instantiateGraphicsObject()
+{
+	Renderables& renderables = vulkan.command.renderables;
+
+	if (pObject3D) {
+		vkDeviceWaitIdle(vulkan.device.getLogical());
+		vulkan.command.RecreateBuffers(vulkan.framebuffers);
+		renderables.Remove(pObject3D);
+		delete pObject3D;
+	}
+
+	switch(iNextObject) {
+		default:  iNextObject = 0;	// reset, and fallthru:
+		case 0:
+			pObject3D = new RenderableCubeTextured(camera.uboMVP);
+			break;
+		case 1:
+			pObject3D = new RenderableTestModel(camera.uboMVP);
+			break;
+	}
+	++iNextObject;
+
+	renderables.Add(FixedRenderable(*pObject3D, vulkan, platform));
+	vulkan.command.PostInitPrepBuffers(vulkan);
 }
 
 void Application::initPersistentValues()
