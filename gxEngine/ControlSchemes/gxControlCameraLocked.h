@@ -34,6 +34,10 @@ public:
 	void handlePinchSpread(float distance);
 	//void handleTwoFingerTwist(float angle);
 
+	bool WasPrimaryShortPressed()		{ bool wasPrimaryShortPress = isPrimaryShortPress;
+		 /* This is a ONE SHOT! */		  isPrimaryShortPress = false;
+		 /*	Only resets once read. */	  return wasPrimaryShortPress; }
+
 protected:
 	void mimicZooming(float factor);
 
@@ -45,4 +49,6 @@ private:
 	bool	isZooming;
 	float	priorMoveX, priorMoveY;
 	int		pressX, pressY;
+
+	bool	isPrimaryShortPress = false;
 };

@@ -54,6 +54,7 @@ void gxControlCameraLocked::handlePrimaryPressUp(int atX, int atY)
 		#endif
 		//TJ_TODO: soon, add support to recognize Directional SWIPE !!!
 		//TJ_TODO:	oh also... add support for DOUBLE-CLICK/DOUBLE-TAP!
+		isPrimaryShortPress = true;
 	} else {
 		if (abs(atX - pressX) <= MAXIMUM_XY_MOVE_LONG_PRESS && abs(atY - pressY) <= MAXIMUM_XY_MOVE_LONG_PRESS)
 		{

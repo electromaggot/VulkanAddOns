@@ -72,6 +72,9 @@ void Application::Run()
 		if (platform.IsWindowMinimizedOrHidden())
 			platform.AwaitEvent();
 
+		if (controlScheme.WasPrimaryShortPressed())
+			instantiateGraphicsObject();
+
 		updateRender();
 	}
 }
