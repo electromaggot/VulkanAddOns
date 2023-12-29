@@ -24,11 +24,12 @@ class RenderableTestModel : public DrawableSpecifier {
 	MeshObject object3D = { vertexDescriptor };
 	ModelLoader model;
 
+	DrawableObjectName name	= "viking_room.obj";	// object's "name" can arbitrarily be same as its filename
+
 public:
 	RenderableTestModel(UBO& refMVP)
-		:	DrawableSpecifier(object3D)
+		:	DrawableSpecifier(object3D, name)
 	{
-		name	=	"viking_room.obj";			// object's "name" can arbitrarily be same as its filename
 		model.load(mesh, name);
 		object3D.indexType = model.indexType();
 

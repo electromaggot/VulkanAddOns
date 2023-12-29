@@ -94,12 +94,12 @@ class RenderableCubeTextured : public DrawableSpecifier, public gxMatrix
 	VertexDescription<Vertex3DNormalTexture> vertexDescriptor;
 	MeshObject cube3DObject = { vertexDescriptor, (void*) CubeVertices, N_ELEMENTS_IN_ARRAY(CubeVertices) };
 	UBO uboMatrix;
+	DrawableObjectName name = "BoomBox";
 public:															// cube, vertex + normal buffer
 	RenderableCubeTextured(UBO& refMVP)							//			+ texture sampler
-		:	DrawableSpecifier(cube3DObject),					// ...this vertex buffer and  <──╮
+		:	DrawableSpecifier(cube3DObject, name),				// ...this vertex buffer and  <──╮
 			uboMatrix(matrix)									//								 │
 	{															//								 │
-		name	=	"BoomBox";									//								 │
 		shaders	= { { VERTEX,	"ubos+uvnorm=diffuv-vert.spv"},	// This shader expects... ───────┤
 					{ FRAGMENT, "textuv2+intens-frag.spv" } };	//								 │
 		pUBOs = { refMVP, uboMatrix };							//  ...these uniform buffers, <──╯
