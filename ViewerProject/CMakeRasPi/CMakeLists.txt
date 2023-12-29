@@ -237,6 +237,8 @@ target_compile_options(${PROJECT_NAME} PRIVATE
                 /Gy
             >
             -ggdb3
+			-std=c++1z
+			#^because^ otherwise:	-Wno-c++17-extensions
             ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
             -Wno-vla;
             ${DEFAULT_CXX_EXCEPTION_HANDLING}
