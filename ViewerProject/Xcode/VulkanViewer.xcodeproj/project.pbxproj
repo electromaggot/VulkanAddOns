@@ -296,7 +296,7 @@
 		9E7C112029CFD42100D6DDEB /* gxCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gxCamera.cpp; sourceTree = "<group>"; };
 		9E7C112229D4960B00D6DDEB /* VulkanMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VulkanMath.h; sourceTree = "<group>"; };
 		9E7C112A29DA768500D6DDEB /* gxMatrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gxMatrix.cpp; sourceTree = "<group>"; };
-		9E7C112F29DB4AF200D6DDEB /* gxGameClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gxGameClock.h; sourceTree = "<group>"; };
+		9E7C112F29DB4AF200D6DDEB /* GameClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClock.h; sourceTree = "<group>"; };
 		9E7C113129DC994800D6DDEB /* gxControlCameraLocked.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gxControlCameraLocked.h; sourceTree = "<group>"; };
 		9E7C113229DC994900D6DDEB /* gxControlCameraLocked.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gxControlCameraLocked.cpp; sourceTree = "<group>"; };
 		9E7C113529DC9A8E00D6DDEB /* iControlScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iControlScheme.h; path = ControlScheme/iControlScheme.h; sourceTree = "<group>"; };
@@ -482,7 +482,6 @@
 				9E3FFC9129AFFECE00AFAB72 /* gxCamera.h */,
 				9E3FFC9829B6E57800AFAB72 /* gxMatrix.h */,
 				9E7C112A29DA768500D6DDEB /* gxMatrix.cpp */,
-				9E7C112F29DB4AF200D6DDEB /* gxGameClock.h */,
 				9E7C113029DC988100D6DDEB /* ControlScheme */,
 				9E7C111F29CFD3D600D6DDEB /* iOS-specific */,
 			);
@@ -785,6 +784,7 @@
 				9EFA5B3122F1C7E200B63757 /* Utility.cpp */,
 				9EFA5B3222F1C7E200B63757 /* Utility.h */,
 				9EA5CCF3230F4EA600178010 /* Helpers.h */,
+				9E7C112F29DB4AF200D6DDEB /* GameClock.h */,
 				9E7C112229D4960B00D6DDEB /* VulkanMath.h */,
 				9EA648342200C65500FD3DB0 /* vkEnumStrings.cpp */,
 			);

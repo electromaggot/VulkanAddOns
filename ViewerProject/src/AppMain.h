@@ -24,7 +24,7 @@
 #include "PlatformSDL.h"
 #include "VulkanSetup.h"
 #include "DrawableSpecifier.h"
-#include "gxGameClock.h"
+#include "GameClock.h"
 #include "gxCamera.h"
 #include "gxControlCameraLocked.h"
 
@@ -74,8 +74,7 @@ private:
 	// Implementation
 	DrawableSpecifier*	pObject3D;
 	int					iNextObject = 0;
-
-	gxGameClock			gameClock;
+	GameClock			gameClock;
 	gxCamera			camera;
 	gxControlCameraLocked	controlScheme;
 
