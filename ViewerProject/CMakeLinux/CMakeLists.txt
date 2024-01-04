@@ -39,72 +39,72 @@ set(EXECUTABLE_OUTPUT_PATH build)			# sub-directory destination for built binary
 
 #################### Source groups ######################
 
-AUX_SOURCE_DIRECTORY("src/" Platform__Linux)
+AUX_SOURCE_DIRECTORY("src/" Platform_Linux)
 
 AUX_SOURCE_DIRECTORY("../src/" VulkanViewer)
-AUX_SOURCE_DIRECTORY("../src/Settings/" VulkanViewer__Settings)
+AUX_SOURCE_DIRECTORY("../src/Settings/" VulkanViewer_Settings)
 
-AUX_SOURCE_DIRECTORY("../../shaders/" Graphics__Shaders)
-AUX_SOURCE_DIRECTORY("../../testObjects/" Graphics__MeshObjects)
+AUX_SOURCE_DIRECTORY("../../shaders/" Graphics_Shaders)
+AUX_SOURCE_DIRECTORY("../../testObjects/" Graphics_MeshObjects)
 
 AUX_SOURCE_DIRECTORY("../../Model3D/" Model3D)
-AUX_SOURCE_DIRECTORY("../../Model3D/External" Model3D__External)
+AUX_SOURCE_DIRECTORY("../../Model3D/External" Model3D_External)
 
 AUX_SOURCE_DIRECTORY("../../gxEngine/" GraphicsEngine)
-AUX_SOURCE_DIRECTORY("../../gxEngine/ControlSchemes" GraphicsEngine__ControlSchemes)
+AUX_SOURCE_DIRECTORY("../../gxEngine/ControlSchemes" GraphicsEngine_ControlSchemes)
 
 AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/" Platform)
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/FileSystem/" Platform__FileSystem)
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/GUISystem/stubs/" Platform__GUISystem)
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ImageHandling/" Platform__ImageHandling)
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/Logger/" Platform__Logger)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/FileSystem/" Platform_FileSystem)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/GUISystem/stubs/" Platform_GUISystem)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ImageHandling/" Platform_ImageHandling)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/Logger/" Platform_Logger)
 
-set(Platform__OSAbstraction
+set(Platform_OSAbstraction
     "../../../VulkanModule/Platform/OSAbstraction/PlatformSDL.cpp"
 )
-source_group("Platform\\OSAbstraction" FILES ${Platform__OSAbstraction})
+source_group("Platform\\OSAbstraction" FILES ${Platform_OSAbstraction})
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ControlScheme/" Platform__ControlScheme)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Platform/ControlScheme/" Platform_ControlScheme)
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/" Vulkan__Adjunct)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/" Vulkan_Adjunct)
 
-set(Vulkan__Adjunct__Renderables
+set(Vulkan_Adjunct_Renderables
     "../../../VulkanModule/Adjunct/Renderables/AddOns.cpp"
     "../../../VulkanModule/Adjunct/Renderables/FixedRenderable.cpp"
 )
-source_group("Vulkan\\Adjunct\\Renderables" FILES ${Vulkan__Adjunct__Renderables})
+source_group("Vulkan\\Adjunct\\Renderables" FILES ${Vulkan_Adjunct_Renderables})
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/VertexTypes/" Vulkan__Adjunct__VertexTypes)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Adjunct/VertexTypes/" Vulkan_Adjunct_VertexTypes)
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Assist/" Vulkan__Assist)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Assist/" Vulkan_Assist)
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Objects/" Vulkan__Objects)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Objects/" Vulkan_Objects)
 
-AUX_SOURCE_DIRECTORY("../../../VulkanModule/Setup/" Vulkan__Setup)
+AUX_SOURCE_DIRECTORY("../../../VulkanModule/Setup/" Vulkan_Setup)
 
 set(ALL_FILES
     ${VulkanViewer}
-    ${VulkanViewer__Settings}
-    ${Graphics__Shaders}
-    ${Graphics__MeshObjects}
+    ${VulkanViewer_Settings}
+    ${Graphics_Shaders}
+    ${Graphics_MeshObjects}
     ${Model3D}
-    ${Model3D__External}
+    ${Model3D_External}
     ${GraphicsEngine}
-    ${GraphicsEngine__ControlSchemes}
+    ${GraphicsEngine_ControlSchemes}
     ${Platform}
-    ${Platform__FileSystem}
-    ${Platform__GUISystem}
-    ${Platform__ImageHandling}
-    ${Platform__Logger}
-    ${Platform__Linux}
-    ${Platform__OSAbstraction}
-    ${Platform__ControlScheme}
-    ${Vulkan__Adjunct}
-    ${Vulkan__Adjunct__Renderables}
-    ${Vulkan__Adjunct__VertexTypes}
-    ${Vulkan__Assist}
-    ${Vulkan__Objects}
-    ${Vulkan__Setup}
+    ${Platform_FileSystem}
+    ${Platform_GUISystem}
+    ${Platform_ImageHandling}
+    ${Platform_Logger}
+    ${Platform_Linux}
+    ${Platform_OSAbstraction}
+    ${Platform_ControlScheme}
+    ${Vulkan_Adjunct}
+    ${Vulkan_Adjunct_Renderables}
+    ${Vulkan_Adjunct_VertexTypes}
+    ${Vulkan_Assist}
+    ${Vulkan_Objects}
+    ${Vulkan_Setup}
 )
 
 #########################################################
