@@ -105,11 +105,9 @@ void Application::ForceUpdateRender(void* pOurself)
 //
 void Application::update()
 {
-	float deltaTime = gameClock.deltaSeconds();
+	vulkan.command.renderables.Update(gameClock);	// advances each game element, calling its gxAction.Update(dt)
 
-	vulkan.command.renderables.Update(deltaTime);	// advances each game element, calling its gxAction.Update(dt)
-
-	camera.update(deltaTime);
+	camera.update(gameClock.deltaSeconds());
 }
 
 

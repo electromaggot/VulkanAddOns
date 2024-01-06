@@ -74,8 +74,7 @@ private:
 	// Implementation
 	DrawableSpecifier*	pObject3D;
 	int					iNextObject = 0;
-
-	gxGameClock			gameClock;
+	GameClock			gameClock;
 	gxCamera			camera;
 	gxControlCameraLocked	controlScheme;
 

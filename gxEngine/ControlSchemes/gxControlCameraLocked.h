@@ -9,7 +9,7 @@
 //
 #include "iControlScheme.h"
 #include "gxCamera.h"
-#include "gxGameClock.h"
+#include "GameClock.h"
 
 
 class gxControlCameraLocked : public iControlScheme
@@ -18,7 +18,7 @@ public:
 	const float MINIMUM_SECONDS_LONG_PRESS = 0.5f;
 	const float MAXIMUM_XY_MOVE_LONG_PRESS = 3.0f;	// long-press allows slight wiggle, especially touchscreen
 
-	gxControlCameraLocked(gxCamera& camera, gxGameClock& clock)
+	gxControlCameraLocked(gxCamera& camera, GameClock& clock)
 		:	camera(camera),
 			clock(clock),
 			timePrimaryPressed(-1.0f),
@@ -42,8 +42,8 @@ protected:
 	void mimicZooming(float factor);
 
 private:
-	gxCamera&	 camera;	// operated on by this ControlScheme
-	gxGameClock& clock;		// aids timing of UI events, like tap vs. long-press
+	gxCamera&	camera;		// operated on by this ControlScheme
+	GameClock&	clock;		// aids timing of UI events, like tap vs. long-press
 
 	float	timePrimaryPressed;
 	bool	isZooming;
