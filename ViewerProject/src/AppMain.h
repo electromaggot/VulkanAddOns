@@ -24,7 +24,7 @@
 #include "PlatformSDL.h"
 #include "VulkanSetup.h"
 #include "DrawableSpecifier.h"
-#include "gxGameClock.h"
+#include "GameClock.h"
 #include "gxCamera.h"
 #include "gxControlCameraLocked.h"
 
