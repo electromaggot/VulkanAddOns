@@ -1,4 +1,4 @@
-*This repository is a work-in-progress, but feel free to play around with it!  I'll do my best to keep it in a working state, so you can clone/pull and build/run the `ViewerProject`.  Currently supports Apple (macOS, iOS) and Linux (Ubuntu, Raspberry Pi 5).  As for supporting Windows, sorry, my Win11 partition became unbootable so it'll have to wait.  (This comment is of course temporary.)*
+*This repository is a work-in-progress, but feel free to play around with it!  I'll do my best to keep it in a working state, so you can clone/pull and build/run the `ViewerProject`.  Currently supports Apple (macOS, iOS) and Linux (Ubuntu, Raspberry Pi 5).  Windows support is currently work-in-progress.  (This comment is of course temporary.)*
 
 <img src="https://github.com/electromaggot/VulkanAddOns/blob/main/ViewerProject/Xcode/Resources/iOS/Images.xcassets/AppIcon-iOS.appiconset/ItunesArtwork%402x.png" width="100" height="100" />
 
@@ -13,3 +13,10 @@ Adds graphical elements to [VulkanModule](https://github.com/electromaggot/Vulka
    - 3D Fonts (generated from TrueType/OpenType files) [coming soon].
 - gxEngine &ndash; components of a game/graphics engine.
 - Particle System [coming later].
+
+## Setup
+Download this repository including its dependent projects:
+```
+git clone --recursive https://github.com/electromaggot/VulkanAddOns
+```
+

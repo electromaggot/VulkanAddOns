@@ -4,3 +4,9 @@
 [submodule "Model3D/external/tiny_obj_loader.h"]
 	path = Model3D/external
 	url = https://github.com/tinyobjloader/tinyobjloader
+[submodule "ViewerProject/external/json"]
+	path = ViewerProject/external/json
+	url = https://github.com/nlohmann/json
+[submodule "ViewerProject/external/imgui"]
+	path = ViewerProject/external/imgui
+	url = https://github.com/ocornut/imgui
