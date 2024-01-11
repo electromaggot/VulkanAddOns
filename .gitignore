@@ -48,5 +48,10 @@ CMakeFiles
 Makefile
 cmake_install.cmake
 
+# Windows-specific
+.vs/
+*.vcxproj.user
+UpgradeLog.htm
+
 # Miscellaneous or specific-to-this-specific-project
 external
