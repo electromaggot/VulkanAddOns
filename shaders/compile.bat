@@ -8,9 +8,9 @@ REM  Assumes all source files are in this script's same directory, while the des
 REM	is different (included with the "build" products) as specified below.
 REM
 
-set COMPILER=..\..\External\VulkanSDK\Bin\glslangValidator.exe
+set COMPILER=..\ViewerProject\External\VulkanSDK\Bin\glslangValidator.exe
 
-set DSTDIR=..\..\VisualStudio\build\compiledShaders
+set DSTDIR=..\ViewerProject\VisualStudio\build\compiledShaders
 
 if not exist "%DSTDIR%" (
   mkdir "%DSTDIR%"
@@ -61,7 +61,7 @@ goto :EOF
 :getModifiedDate
   set FILE=%~f1
   set FILE=%FILE:\=\\%
-  for /F "skip=1 delims=. usebackq" %%D in (`wmic datafile where name^="%FILE%" get LastModified`) do (
+  for /F "skip=1 delims=. usebackq" %%D in (`wmic datafile where ^(name^="%FILE%"^) get LastModified`) do (
     set DATE_MODIFIED=%%D
     goto done
   )
