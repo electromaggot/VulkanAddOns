@@ -19,7 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\VulkanModule\Platform\ControlScheme\iControlScheme.h" />
+    <ClInclude Include="..\..\gxEngine\ControlSchemes\gxControlCameraLocked.h" />
+    <ClInclude Include="..\..\gxEngine\gxCamera.h" />
+    <ClInclude Include="..\..\gxEngine\gxMatrix.h" />
+    <ClInclude Include="..\..\Model3D\External\tiny_obj_loader.h" />
+    <ClInclude Include="..\..\Model3D\ModelDefSpec.h" />
+    <ClInclude Include="..\..\Model3D\ModelLoader.h" />
+    <ClInclude Include="..\..\Model3D\TestModel.h" />
+    <ClInclude Include="..\..\testObjects\Cube3DTextured.h" />
     <ClInclude Include="..\src\AppConstants.h" />
     <ClInclude Include="..\src\AppMain.h" />
     <ClInclude Include="..\src\Settings\AppSettings.h" />
@@ -32,6 +39,7 @@
     <ClInclude Include="..\src\VulkanModule\Objects\DepthBuffer.h" />
     <ClInclude Include="..\src\VulkanModule\Objects\EventObjects.h" />
     <ClInclude Include="..\src\VulkanModule\Objects\ImageResource.h" />
+    <ClInclude Include="..\src\VulkanModule\Platform\ControlScheme\iControlScheme.h" />
     <ClInclude Include="..\src\VulkanModule\Platform\FileSystem\FileSystem.h" />
     <ClInclude Include="..\src\VulkanModule\Platform\FileSystem\FileSystemSDL.h" />
     <ClInclude Include="..\src\VulkanModule\Platform\GUISystem\stubs\imgui.h" />
@@ -88,6 +96,10 @@
     <ClInclude Include="src\LocalFileSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\gxEngine\ControlSchemes\gxControlCameraLocked.cpp" />
+    <ClCompile Include="..\..\gxEngine\gxCamera.cpp" />
+    <ClCompile Include="..\..\gxEngine\gxMatrix.cpp" />
+    <ClCompile Include="..\..\Model3D\ModelLoader.cpp" />
     <ClCompile Include="..\src\AppMain.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Settings\AppSettings.cpp" />
@@ -110,7 +122,6 @@
     </ClCompile>
     <ClCompile Include="..\src\VulkanModule\Platform\OSAbstraction\PlatformSDL.cpp" />
     <ClCompile Include="..\src\VulkanModule\Platform\PlatformCommon.cpp" />
-    <ClCompile Include="..\..\testObjects\Cube3DTextured.cpp" />
     <ClCompile Include="..\src\VulkanModule\Adjunct\Descriptors.cpp" />
     <ClCompile Include="..\src\VulkanModule\Adjunct\PrimitiveBuffer.cpp" />
     <ClCompile Include="..\src\VulkanModule\Adjunct\TextureImage.cpp" />
@@ -136,11 +147,11 @@
     <ClCompile Include="..\src\VulkanModule\Setup\VulkanSetup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\graphics\shaders\textuv+intens.frag" />
-    <None Include="..\graphics\shaders\ubos+uvnorm=diffuv.vert" />
-    <None Include="..\graphics\shaders\vboMesh.frag" />
-    <None Include="..\graphics\shaders\vboMesh.vert" />
-    <None Include="..\graphics\shaders\compile.bat" />
+    <None Include="..\..\shaders\textuv+intens.frag" />
+    <None Include="..\..\shaders\ubos+uvnorm=diffuv.vert" />
+    <None Include="..\..\shaders\vboMesh.frag" />
+    <None Include="..\..\shaders\vboMesh.vert" />
+    <None Include="..\..\shaders\compile.bat" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{61821F10-58EE-470C-BCAF-D8C8D3DF1ABC}</ProjectGuid>
@@ -235,21 +246,23 @@
       <Command>xcopy /y /d "$(ProjectDir)..\External\VulkanSDK\Lib\*.dll" "$(TargetDir)"
 xcopy /y /d "$(ProjectDir)..\External\SDL\lib\$(Platform)\*.dll" "$(TargetDir)"
 xcopy /y /d "$(ProjectDir)..\External\SDL_image\lib\$(Platform)\*.dll" "$(TargetDir)"
+if not exist "$(ProjectDir)\build\compiledShaders" ( mkdir "$(ProjectDir)\build\compiledShaders" )
 if not exist "$(TargetDir)\compiledShaders" ( mklink /j "$(TargetDir)\compiledShaders" "$(ProjectDir)\build\compiledShaders" )
-if not exist "$(TargetDir)\textures" ( mklink /j "$(TargetDir)\textures" "$(ProjectDir)..\graphics\assets\textures" )</Command>
+if not exist "$(TargetDir)\textures" ( mklink /j "$(TargetDir)\textures" "$(ProjectDir)..\..\testAssets\textures" )
+if not exist "$(TargetDir)\models" ( mklink /j "$(TargetDir)\models" "$(ProjectDir)..\..\testAssets\models" )</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Copy DLLs to Output Directory</Message>
     </PostBuildEvent>
     <CustomBuildStep>
-      <Command>cd ..\graphics\shaders
+      <Command>cd ..\..\shaders\
 compile.bat</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Message>Compile Shaders</Message>
     </CustomBuildStep>
     <CustomBuildStep>
-      <RootFolder>..\graphics\shaders</RootFolder>
+      <RootFolder>..\..\shaders</RootFolder>
       <Outputs>build\compiledShaders</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>

@@ -62,8 +62,26 @@
     <Filter Include="Graphics\test3DObjects">
       <UniqueIdentifier>{89729e8b-e196-41fa-bfa6-a9ea1d62b86c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\ControlScheme">
-      <UniqueIdentifier>{3486584f-1aea-40ba-906e-fd4b651493d1}</UniqueIdentifier>
+    <Filter Include="gxEngine">
+      <UniqueIdentifier>{b8eccafe-8e07-4940-9e3f-0b563c3460e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddOns">
+      <UniqueIdentifier>{916e9652-c7da-460d-a5b6-f6da97ac0f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddOns\Model3D">
+      <UniqueIdentifier>{9266fb14-42a8-475f-a6ca-03d91e3ff498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddOns\Model3D\external">
+      <UniqueIdentifier>{ec52430d-a784-4c95-9b25-a0eb27b5a430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\textures">
+      <UniqueIdentifier>{76eb20a4-bb5e-42d9-b70f-4f7f8977e41c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\models">
+      <UniqueIdentifier>{a5aa33f9-33f1-4f4d-bf27-9627d78923cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gxEngine\ControlScheme">
+      <UniqueIdentifier>{61b9ed11-b746-45d2-b676-e37d3a4accee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +90,9 @@
     </ClInclude>
     <ClInclude Include="..\src\AppMain.h">
       <Filter>MainProgram</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\testObjects\Cube3DTextured.h">
+      <Filter>Graphics\test3DObjects</Filter>
     </ClInclude>
     <ClInclude Include="..\src\VulkanModule\Platform\OSAbstraction\iPlatform.h">
       <Filter>Platform\OSAbstraction</Filter>
@@ -256,9 +277,6 @@
     <ClInclude Include="..\src\VulkanModule\Adjunct\Renderables\MeshObject.h">
       <Filter>Vulkan\Adjunct\Renderables</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\VulkanModule\Platform\ControlScheme\iControlScheme.h">
-      <Filter>Platform\ControlScheme</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\VulkanModule\Adjunct\Renderables\DrawableSpecifier.h">
       <Filter>Vulkan\Adjunct\Renderables</Filter>
     </ClInclude>
@@ -267,6 +285,30 @@
     </ClInclude>
     <ClInclude Include="..\src\VulkanModule\Objects\ImageResource.h">
       <Filter>Vulkan\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Model3D\ModelDefSpec.h">
+      <Filter>AddOns\Model3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Model3D\ModelLoader.h">
+      <Filter>AddOns\Model3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Model3D\TestModel.h">
+      <Filter>AddOns\Model3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Model3D\External\tiny_obj_loader.h">
+      <Filter>AddOns\Model3D\external</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\VulkanModule\Platform\ControlScheme\iControlScheme.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gxEngine\gxCamera.h">
+      <Filter>gxEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gxEngine\gxMatrix.h">
+      <Filter>gxEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gxEngine\ControlSchemes\gxControlCameraLocked.h">
+      <Filter>gxEngine\ControlScheme</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -375,9 +417,6 @@
     <ClCompile Include="..\src\VulkanModule\Platform\FileSystem\FileSystem.cpp">
       <Filter>Platform\FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\testObjects\meshObjects\Quad2D.cpp">
-      <Filter>Graphics\test3DObjects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\VulkanModule\Adjunct\VertexTypes\VertexNull.cpp">
       <Filter>Vulkan\Adjunct\VertexTypes</Filter>
     </ClCompile>
@@ -386,6 +425,18 @@
     </ClCompile>
     <ClCompile Include="..\src\VulkanModule\Objects\ImageResource.cpp">
       <Filter>Vulkan\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Model3D\ModelLoader.cpp">
+      <Filter>AddOns\Model3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gxEngine\gxCamera.cpp">
+      <Filter>gxEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gxEngine\gxMatrix.cpp">
+      <Filter>gxEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gxEngine\ControlSchemes\gxControlCameraLocked.cpp">
+      <Filter>gxEngine\ControlScheme</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
