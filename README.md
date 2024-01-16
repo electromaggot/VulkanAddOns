@@ -17,6 +17,6 @@ Adds graphical elements to [VulkanModule](https://github.com/electromaggot/Vulka
 ## Setup
 Download this repository including its dependent projects:
 ```
-git clone --recursive https://github.com/electromaggot/VulkanAddOns
+git clone --recurse-submodules https://github.com/electromaggot/VulkanAddOns
 ```
 
